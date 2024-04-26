@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var amount = 0.0
+    @State private var checkAmount = 0.0
     @State private var people = 2
     let tipPercentages = [0, 5, 15, 20]
     static let currencyFormatter: NumberFormatter = {
@@ -20,7 +20,10 @@ struct ContentView: View {
     var body: some View {
         Form {
             Section {
-                TextField("Amount", value: $amount, formatter: ContentView.currencyFormatter)
+                TextField("Amount", value: $checkAmount, formatter: ContentView.currencyFormatter)
+            }
+            Section {
+                Text(checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
             }
         }
     }
