@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var tapCount = 0
     var body: some View {
         NavigationStack {
             Form {
@@ -34,6 +35,9 @@ struct ContentView: View {
             }
             .navigationTitle("Navigation title")
             .navigationBarTitleDisplayMode(.inline)
+            Button("Tap Button") {
+                tapCount += 1
+            }
         }
     }
 }
