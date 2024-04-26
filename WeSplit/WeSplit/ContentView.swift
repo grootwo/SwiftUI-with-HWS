@@ -23,7 +23,7 @@ struct ContentView: View {
                 TextField("Amount", value: $checkAmount, formatter: ContentView.currencyFormatter)
             }
             Section {
-                Text(checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                Text(checkAmount, format: .currency(code: "USD"))
             }
         }
     }
