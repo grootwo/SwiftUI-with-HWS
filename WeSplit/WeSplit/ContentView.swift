@@ -9,13 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Form {
+            Section {
+                Text("This is a Form in Section 1")
+                Text("This is a Form")
+            }
+            Section {
+                Text("This is a Form in Section 2")
+                Text("This is a Form")
+            }
         }
-        .padding()
     }
 }
 
