@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var checkAmount = 0.0
-    @State private var people = 2
+    @State private var numberOfPeople = 2
     let tipPercentages = [0, 5, 15, 20]
     static let currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -18,14 +18,22 @@ struct ContentView: View {
         return formatter
     }()
     var body: some View {
-        Form {
-            Section {
-                TextField("Amount", value: $checkAmount, formatter: ContentView.currencyFormatter)
-                    .keyboardType(.decimalPad)
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("Amount", value: $checkAmount, formatter: ContentView.currencyFormatter)
+                        .keyboardType(.decimalPad)
+                    Picker("Number of People", selection: $numberOfPeople) {
+                        ForEach(2..<101) {
+                            Text("\($0) people")
+                        }
+                    }
+                }
+                Section {
+                    Text(checkAmount, format: .currency(code: "USD"))
+                }
             }
-            Section {
-                Text(checkAmount, format: .currency(code: "USD"))
-            }
+            .navigationTitle("WeSplit")
         }
     }
 }
