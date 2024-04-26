@@ -9,27 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     @State var tapCount = 0
+    @State private var text = ""
     var body: some View {
         NavigationStack {
             Form {
+                TextField("Enter text", text: $text)
+                Text("Entered text is \(text)")
                 Section {
                     Text("This is a Form in Section 1")
                     Text("This is a Form")
                 }
                 Section {
                     Text("This is a Form in Section 2")
-                    Text("This is a Form")
-                }
-                Section {
-                    Text("This is a Form in Section 3")
-                    Text("This is a Form")
-                }
-                Section {
-                    Text("This is a Form in Section 4")
-                    Text("This is a Form")
-                }
-                Section {
-                    Text("This is a Form in Section 5")
                     Text("This is a Form")
                 }
             }
