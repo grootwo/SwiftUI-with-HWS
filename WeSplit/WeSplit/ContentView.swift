@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
+    @State private var tip = 0
     let tipPercentages = [0, 5, 15, 20]
     static let currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -28,6 +29,14 @@ struct ContentView: View {
                             Text("\($0) people")
                         }
                     }
+                }
+                Section("How much do you want to tip?") {
+                    Picker("Tip percentage", selection: $tip) {
+                        ForEach(tipPercentages, id: \.self) {
+                            Text($0, format: .percent)
+                        }
+                    }
+                    .pickerStyle(.segmented)
                 }
                 Section {
                     Text(checkAmount, format: .currency(code: "USD"))
