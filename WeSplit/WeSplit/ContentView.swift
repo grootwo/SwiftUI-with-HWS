@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var tipPercentage = 0
     let tipPercentages = [0, 5, 10, 15, 20]
     var totalPerPerson: Double {
-        return checkAmount * (1 + (Double(tipPercentage) / 100)) / Double(numberOfPeople + 2)
+        return checkAmount * (1 + Double(tipPercentage) / 100) / Double(numberOfPeople + 2)
     }
     static let currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
