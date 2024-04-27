@@ -9,9 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var checkAmount = 0.0
-    @State private var numberOfPeople = 2
+    @State private var numberOfPeople = 0
     @State private var tipPercentage = 0
-    let tipPercentages = [0, 5, 15, 20]
+    let tipPercentages = [0, 5, 10, 15, 20]
+    var totalPerPerson: Double {
+        return checkAmount * (1 + (Double(tipPercentage) / 100)) / Double(numberOfPeople + 2)
+    }
     static let currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -39,7 +42,7 @@ struct ContentView: View {
                     .pickerStyle(.segmented)
                 }
                 Section {
-                    Text(checkAmount, format: .currency(code: "USD"))
+                    Text(totalPerPerson, format: .currency(code: "USD"))
                 }
             }
             .navigationTitle("WeSplit")
