@@ -7,15 +7,21 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CustomButton: View {
+    @Binding var isYes: Bool
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Button("Yes or No") {
+            isYes.toggle()
         }
-        .padding()
+        .buttonStyle(.borderedProminent)
+    }
+}
+
+struct ContentView: View {
+    @State private var isYes = false
+    var body: some View {
+        Text(isYes ? "Yes!" : "No...")
+        CustomButton(isYes: $isYes)
     }
 }
 
