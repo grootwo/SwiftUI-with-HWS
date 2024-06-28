@@ -14,18 +14,30 @@ struct ContentView: View {
     @State private var isShowingSheet = false
     var body: some View {
         NavigationStack {
-            Text("books count: \(books.count)")
-                .navigationTitle("Bookworm")
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Add", systemImage: "plus") {
-                            isShowingSheet = true
+            List {
+                ForEach(books) { book in
+                    HStack {
+                        EmojiRatingView(rating: book.rating)
+                        VStack(alignment: .leading) {
+                            Text(book.title)
+                                .font(.headline)
+                            Text(book.author)
+                                .font(.subheadline)
                         }
                     }
                 }
-                .sheet(isPresented: $isShowingSheet) {
-                    AddBookView()
+            }
+            .navigationTitle("Bookworm")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Add", systemImage: "plus") {
+                        isShowingSheet = true
+                    }
                 }
+            }
+            .sheet(isPresented: $isShowingSheet) {
+                AddBookView()
+            }
         }
     }
 }
