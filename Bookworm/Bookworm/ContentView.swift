@@ -12,7 +12,7 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: [
         SortDescriptor(\Book.title),
-        SortDescriptor(\Book.author, order: .reverse)
+        SortDescriptor(\Book.rating)
     ]) var books: [Book]
     @State private var isShowingSheet = false
     var body: some View {
