@@ -14,6 +14,8 @@ struct DetailView: View {
         ScrollView {
             ZStack(alignment: .bottomTrailing) {
                 Image(book.genre)
+                    .resizable()
+                    .scaledToFit()
                 
                 Text(book.genre.uppercased())
                     .font(.caption)
@@ -32,6 +34,9 @@ struct DetailView: View {
                 .padding()
             Text(book.review)
         }
+        .navigationTitle(book.title)
+        .navigationBarTitleDisplayMode(.inline)
+        .scrollBounceBehavior(.basedOnSize)
     }
 }
 
