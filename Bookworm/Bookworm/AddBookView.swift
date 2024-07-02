@@ -10,7 +10,7 @@ import SwiftUI
 struct AddBookView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
-    let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
+    let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller", "Biography", "History", "Language", "Business", "Hobby", "Art", "Essay"]
     @State private var title = ""
     @State private var author = ""
     @State private var genre = ""
