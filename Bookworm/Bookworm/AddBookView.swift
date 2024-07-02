@@ -38,6 +38,7 @@ struct AddBookView: View {
                     dismiss()
                 }
             }
+            .disabled(title.isEmpty || (title.trimmingCharacters(in: .whitespacesAndNewlines)) == "")
         }
     }
 }
