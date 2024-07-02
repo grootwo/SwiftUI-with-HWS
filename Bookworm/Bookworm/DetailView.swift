@@ -28,14 +28,22 @@ struct DetailView: View {
                     .clipShape(.capsule)
                     .offset(x: -10, y: -10)
             }
-            Text(book.title)
-                .font(.title)
-            Text(book.author)
-                .font(.title3)
-                .foregroundStyle(.secondary)
-            RatingView(rating: .constant(book.rating))
-                .padding()
-            Text(book.review)
+            VStack(alignment: .leading, spacing: 10) {
+                Text(book.title)
+                    .font(.title)
+                    .bold()
+                Text(book.author)
+                    .font(.title3)
+                Text("\(book.startDate.formatted(date: .abbreviated, time: .omitted)) ~ \(book.endDate.formatted(date: .abbreviated, time: .omitted))")
+                .font(.callout)
+                RatingView(rating: .constant(book.rating))
+                    .padding()
+                HStack {
+                    Text(book.review)
+                    Spacer()
+                }
+            }
+            .padding()
         }
         .navigationTitle(book.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -62,7 +70,7 @@ struct DetailView: View {
     do {        
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Book.self, configurations: config)
-        let example = Book(title: "Test Title", author: "Test Author", genre: "Mystery", rating: 3, review: "This book was fun enough. But i didn't expect to be fun..")
+        let example = Book(title: "Test Title", author: "Test Author", genre: "Mystery", rating: 3, review: "This book was fun enough. But i didn't expect to be fun..", startDate: Date.now, endDate: Date.now)
         return DetailView(book: example)
     } catch {
         return Text("Error: Failed to create preview. \(error.localizedDescription)")

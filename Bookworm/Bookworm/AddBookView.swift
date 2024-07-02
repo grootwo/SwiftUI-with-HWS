@@ -16,6 +16,8 @@ struct AddBookView: View {
     @State private var genre = ""
     @State private var rating = 3
     @State private var review = ""
+    @State private var startDate = Date.now
+    @State private var endDate = Date.now
     var body: some View {
         Form {
             Section("About Book") {
@@ -27,13 +29,17 @@ struct AddBookView: View {
                     }
                 }
             }
+            Section("Date") {
+                DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
+                DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: [.date])
+            }
             Section("Review") {
                 RatingView(rating: $rating)
                 TextEditor(text: $review)
             }
             Section {
                 Button("Save") {
-                    let newBook = Book(title: title, author: author, genre: genre, rating: rating, review: review)
+                    let newBook = Book(title: title, author: author, genre: genre, rating: rating, review: review, startDate: startDate, endDate: endDate)
                     modelContext.insert(newBook)
                     dismiss()
                 }
