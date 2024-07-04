@@ -14,18 +14,17 @@ struct UsersView: View {
     
     var body: some View {
         List(users) { user in
-            NavigationLink(value: user) {
-                HStack {
-                    Text(user.name)
-                    Spacer()
-                    Text(String(user.jobs.count))
-                        .padding(7)
-                        .foregroundStyle(.white)
-                        .background(.secondary)
-                        .clipShape(.circle)
-                }
+            HStack {
+                Text(user.name)
+                Spacer()
+                Text(String(user.jobs.count))
+                    .padding(7)
+                    .foregroundStyle(.white)
+                    .background(.secondary)
+                    .clipShape(.circle)
             }
         }
+        .onAppear(perform: addSample)
     }
     
     init(minimumJoinDate: Date, sortOrder: [SortDescriptor<User>]) {
