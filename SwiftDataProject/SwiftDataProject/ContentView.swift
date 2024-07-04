@@ -10,17 +10,10 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
-    @Query(filter: #Predicate<User> { user in
-        user.name.localizedStandardContains("r") &&
-        user.city == "New York"
-    }, sort: \User.name) var users: [User]
+    @State private var isShowingUpcoming = false
     var body: some View {
         NavigationStack {
-            List(users) { user in
-                NavigationLink(value: user) {
-                    Text(user.name)
-                }
-            }
+            UsersView(minimumJoinDate: isShowingUpcoming ? .now : .distantPast)
             .navigationTitle("Users")
             .toolbar {
                 Button("Add user", systemImage: "plus") {
@@ -34,6 +27,9 @@ struct ContentView: View {
                     modelContext.insert(second)
                     modelContext.insert(third)
                     modelContext.insert(fourth)
+                }
+                Button(isShowingUpcoming ? "Show everyone" : "Show upcoming") {
+                    isShowingUpcoming.toggle()
                 }
             }
         }
