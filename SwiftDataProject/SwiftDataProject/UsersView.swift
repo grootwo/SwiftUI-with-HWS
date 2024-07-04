@@ -17,7 +17,7 @@ struct UsersView: View {
             HStack {
                 Text(user.name)
                 Spacer()
-                Text(String(user.jobs.count))
+                Text(String(user.unwrappedJobs.count))
                     .padding(7)
                     .foregroundStyle(.white)
                     .background(.secondary)
@@ -38,8 +38,8 @@ struct UsersView: View {
         var job1 = Job(name: "Meeting with workers", priority: 2)
         var job2 = Job(name: "Eating lunch", priority: 1)
         modelContext.insert(user1)
-        user1.jobs.append(job1)
-        user1.jobs.append(job2)
+        user1.jobs?.append(job1)
+        user1.jobs?.append(job2)
     }
 }
 
