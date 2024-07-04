@@ -39,7 +39,7 @@ struct ContentView: View {
                                     SortDescriptor(\User.name),
                                     SortDescriptor(\User.joinDate)
                                 ])
-                            Text("Sort by name")
+                            Text("Sort by join date")
                                 .tag([
                                     SortDescriptor(\User.joinDate),
                                     SortDescriptor(\User.name)
