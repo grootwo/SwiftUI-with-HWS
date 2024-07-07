@@ -45,6 +45,10 @@ struct ContentView: View {
     }
     func loadUsers() async {
         print("load users: start")
+        // 0: check existing users
+        if !users.isEmpty {
+            return
+        }
         // 1: read url
         guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else {
             print("Error: Invalid url")
