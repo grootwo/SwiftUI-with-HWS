@@ -40,10 +40,12 @@ struct ContentView: View {
             let (data, _) = try await URLSession.shared.data(from: url)
             print("fetch data: success")
             // 3: decode data
-            if let decoded = try? JSONDecoder().decode(Users.self, from: data) {
-                users = decoded.users
-                print("decode data: success")
+            guard let decoded = try? JSONDecoder().decode(Users.self, from: data) else {
+                print("Error: Failed to decode data")
+                return
             }
+            users = decoded.users
+            print("decode data: success")
         } catch {
             print("Error: Invalid data")
         }
