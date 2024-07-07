@@ -9,19 +9,32 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var users = [User]()
+    let layout = [
+        GridItem(.adaptive(minimum: 150, maximum: 200))
+    ]
     var body: some View {
         NavigationStack {
             if users.isEmpty {
                 ProgressView()
             } else {
-                List(users, id: \.id) { user in
-                    HStack {
-                        Text(user.name)
-                        Spacer()
-                        Text(String(user.isActive))
-                    }
+                ScrollView {
+                    LazyVGrid(columns: layout, content: {
+                        ForEach(users, id: \.id) { user in
+                            HStack {
+                                Text(user.name)
+                            }
+                            .padding()
+                            .background(.yellow)
+                            .clipShape(.rect(cornerRadius: 30))
+                            .overlay(
+                                Circle()
+                                    .foregroundColor(user.isActive ? .blue : .clear)
+                                    .frame(width: 10), alignment: .topTrailing
+                            )
+                        }
+                    })
                 }
-                .navigationTitle("Users")
+                .scrollBounceBehavior(.basedOnSize)
             }
         }
         .task {
