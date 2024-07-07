@@ -17,6 +17,7 @@ struct ContentView: View {
                 List(users, id: \.id) { user in
                     HStack {
                         Text(user.name)
+                        Spacer()
                         Text(String(user.isActive))
                     }
                 }
@@ -40,11 +41,11 @@ struct ContentView: View {
             let (data, _) = try await URLSession.shared.data(from: url)
             print("fetch data: success")
             // 3: decode data
-            guard let decoded = try? JSONDecoder().decode(Users.self, from: data) else {
+            guard let decoded = try? JSONDecoder().decode([User].self, from: data) else {
                 print("Error: Failed to decode data")
                 return
             }
-            users = decoded.users
+            users = decoded
             print("decode data: success")
         } catch {
             print("Error: Invalid data")
