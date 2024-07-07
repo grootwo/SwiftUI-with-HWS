@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct Users: Codable {
+    var users: [User]
+}
+
 struct User: Codable {
     var id: String
     var isActive: Bool
