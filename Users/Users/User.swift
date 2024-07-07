@@ -19,8 +19,9 @@ struct User: Codable {
     var company: String
     var email: String
     var address: String
-    var registered: Date
-    var tage: [String]
+    var about: String
+    var registered: String
+    var tags: [String]
     var friends: [Friend]
 }
 

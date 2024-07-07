@@ -20,6 +20,7 @@ struct ContentView: View {
                         Text(String(user.isActive))
                     }
                 }
+                .navigationTitle("Users")
             }
         }
         .task {
