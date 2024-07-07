@@ -20,17 +20,19 @@ struct ContentView: View {
                 ScrollView {
                     LazyVGrid(columns: layout, content: {
                         ForEach(users, id: \.id) { user in
-                            HStack {
-                                Text(user.name)
+                            NavigationLink(destination: UserView(user: user)) {
+                                HStack {
+                                    Text(user.name)
+                                }
+                                .padding()
+                                .background(.yellow)
+                                .clipShape(.rect(cornerRadius: 30))
+                                .overlay(
+                                    Circle()
+                                        .foregroundColor(user.isActive ? .blue : .clear)
+                                        .frame(width: 10), alignment: .topTrailing
+                                )
                             }
-                            .padding()
-                            .background(.yellow)
-                            .clipShape(.rect(cornerRadius: 30))
-                            .overlay(
-                                Circle()
-                                    .foregroundColor(user.isActive ? .blue : .clear)
-                                    .frame(width: 10), alignment: .topTrailing
-                            )
                         }
                     })
                 }

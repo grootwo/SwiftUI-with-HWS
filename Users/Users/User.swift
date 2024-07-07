@@ -21,7 +21,7 @@ struct User: Codable {
     var friends: [Friend]
 }
 
-struct Friend: Codable {
+struct Friend: Codable, Hashable {
     var id: String
     var name: String
 }
