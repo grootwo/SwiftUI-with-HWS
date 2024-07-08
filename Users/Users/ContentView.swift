@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
-    @State private var users = [User]()
+    @Environment(\.modelContext) var modelContext
+    @Query var users: [User]
     let layout = [
         GridItem(.adaptive(minimum: 150, maximum: 200))
     ]
@@ -65,8 +67,11 @@ struct ContentView: View {
                 print("Error: Failed to decode data")
                 return
             }
-            users = decoded
             print("decode data: success")
+            for user in decoded {
+                modelContext.insert(user)
+            }
+            print("save data: success")
         } catch {
             print("Error: Invalid data")
         }

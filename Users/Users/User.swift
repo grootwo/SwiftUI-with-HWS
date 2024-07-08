@@ -34,7 +34,7 @@ class User: Codable {
     var about: String
     var registered: String
     var tags: [String]
-    var friends: [Friend]
+    @Relationship(deleteRule: .cascade) var friends: [Friend]
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
