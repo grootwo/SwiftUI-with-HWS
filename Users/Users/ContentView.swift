@@ -47,6 +47,7 @@ struct ContentView: View {
         print("load users: start")
         // 0: check existing users
         if !users.isEmpty {
+            print("users are already here")
             return
         }
         // 1: read url
