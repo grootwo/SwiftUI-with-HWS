@@ -8,22 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showingconfirmationDialog = false
-    @State private var backgroundColor = Color.white
+    @State private var image: Image?
     var body: some View {
-        Button("Tap to change background color") {
-            showingconfirmationDialog = true
+        VStack {
+            image?
+                .resizable()
+                .scaledToFit()
         }
-        .background(backgroundColor)
-        .frame(width: 100, height: 100)
-        .confirmationDialog("Set Color", isPresented: $showingconfirmationDialog) {
-            Button("Yellow") { backgroundColor = Color.yellow }
-            Button("Cyan") { backgroundColor = Color.cyan }
-            Button("Mint") { backgroundColor = Color.mint }
-            Button("Cancel", role: .cancel) { }
-        } message: {
-            Text("Which color do you want?")
-        }
+        .onAppear(perform: loadImage)
+    }
+    func loadImage() {
+        image = Image(.cat)
     }
 }
 
