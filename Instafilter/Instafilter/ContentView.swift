@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    let cat = Image(.cat)
     var body: some View {
-        ShareLink(item: URL(string: "https://www.youtube.com/watch?v=ZsCfVcBFlt4&list=PL-v5Ft0MHPi0kO89KThPO7yMu5eFr9qVJ&index=6")!, subject: Text("This is a great song."), message: Text("Do you want to try this?")) {
-            VStack {
-                Image(systemName: "music.note")
-                    .font(.title)
-                Text("Share \"I've always get this way\"")
-            }
+        ShareLink(item: cat, preview: SharePreview("cat image", image: cat)) {
+            Label("Click to share", systemImage: "cat.fill")
         }
     }
 }
