@@ -6,18 +6,22 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ContentView: View {
+    @State private var pickerItem: PhotosPickerItem?
+    @State private var selectedImage: Image?
     var body: some View {
-        ContentUnavailableView {
-            Label("Not found", systemImage: "questionmark")
-        } description: {
-            Text("You found an empty page.")
-        } actions: {
-            Button("Go back") {
-                // create a snippet
+        VStack {
+            PhotosPicker("Select a photo", selection: $pickerItem, matching: .images)
+            selectedImage?
+                .resizable()
+                .scaledToFit()
+        }
+        .onChange(of: pickerItem) {
+            Task {
+                selectedImage = try await pickerItem?.loadTransferable(type: Image.self)
             }
-            .buttonStyle(.bordered)
         }
     }
 }
