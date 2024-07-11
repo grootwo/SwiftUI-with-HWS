@@ -6,33 +6,14 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 struct ContentView: View {
-    @State private var pickerItems = [PhotosPickerItem]()
-    @State private var selectedImages = [Image]()
     var body: some View {
-        VStack {
-            PhotosPicker(selection: $pickerItems, maxSelectionCount: 2, matching: .any(of: [.images, .not(.screenRecordings)])) {
-                VStack {
-                    Image(systemName: "photo.fill")
-                    Text("Select two images")
-                }
-            }
-            ScrollView {
-                ForEach(0..<selectedImages.count, id: \.self) { index in
-                    selectedImages[index]
-                        .resizable()
-                        .scaledToFit()
-                }
-            }        }
-        .onChange(of: pickerItems) {
-            Task {
-                for item in pickerItems {
-                    if let loadedImage = try await item.loadTransferable(type: Image.self) {
-                        selectedImages.append(loadedImage)
-                    }
-                }
+        ShareLink(item: URL(string: "https://www.youtube.com/watch?v=ZsCfVcBFlt4&list=PL-v5Ft0MHPi0kO89KThPO7yMu5eFr9qVJ&index=6")!, subject: Text("This is a great song."), message: Text("Do you want to try this?")) {
+            VStack {
+                Image(systemName: "music.note")
+                    .font(.title)
+                Text("Share \"I've always get this way\"")
             }
         }
     }
