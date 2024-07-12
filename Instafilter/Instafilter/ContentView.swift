@@ -9,11 +9,32 @@ import SwiftUI
 import StoreKit
 
 struct ContentView: View {
-    @Environment(\.requestReview) var requestReview
+    @State private var processedImage: Image?
+    @State private var intensityAmount = 0.0
     var body: some View {
-        Button("Leave your review") {
-            requestReview()
+        NavigationStack {
+            VStack {
+                Spacer()
+                if let processedImage {
+                    processedImage
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    ContentUnavailableView("No picture", systemImage: "photo.badge.plus", description: Text("Click to import a picture"))
+                }
+                Spacer()
+                HStack {
+                    Text("Intensity")
+                    Slider(value: $intensityAmount)
+                }
+                Button("Change filter", action: changeFilter)
+            }
+            .padding()
+            .navigationTitle("Instafilter")
         }
+    }
+    func changeFilter() {
+        
     }
 }
 
