@@ -9,13 +9,16 @@ import SwiftUI
 import PhotosUI
 import CoreImage
 import CoreImage.CIFilterBuiltins
+import StoreKit
 
 struct ContentView: View {
     @State private var processedImage: Image?
-    @State private var intensityAmount = 0.0
+    @State private var intensityAmount = 0.4
     @State private var selectedItem: PhotosPickerItem?
     @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
     @State private var showingConfirmationDialog = false
+    @AppStorage("filterCount") var filterCount = 0
+    @Environment(\.requestReview) var requestReview
     let context = CIContext()
     var body: some View {
         NavigationStack {
@@ -80,9 +83,13 @@ struct ContentView: View {
         let uiImage = UIImage(cgImage: cgImage)
         processedImage = Image(uiImage: uiImage)
     }
-    func setFilter(_ filter: CIFilter) {
+    @MainActor func setFilter(_ filter: CIFilter) {
         currentFilter = filter
         loadImage()
+        filterCount += 1
+        if filterCount >= 3 {
+            requestReview()
+        }
     }
 }
 
