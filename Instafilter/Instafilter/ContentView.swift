@@ -41,7 +41,13 @@ struct ContentView: View {
                     Slider(value: $intensityAmount)
                         .onChange(of: intensityAmount, applyProcess)
                 }
-                Button("Change filter", action: changeFilter)
+                HStack {
+                    Button("Change filter", action: changeFilter)
+                    Spacer()
+                    if let processedImage {
+                        ShareLink(item: processedImage, preview: SharePreview("Processed Image", image: processedImage))
+                    }
+                }
             }
             .padding()
             .navigationTitle("Instafilter")
