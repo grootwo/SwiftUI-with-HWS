@@ -14,7 +14,8 @@ struct ContentView: View {
     @State private var processedImage: Image?
     @State private var intensityAmount = 0.0
     @State private var selectedItem: PhotosPickerItem?
-    @State private var currentFilter = CIFilter.sepiaTone()
+    @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
+    @State private var showingConfirmationDialog = false
     let context = CIContext()
     var body: some View {
         NavigationStack {
@@ -41,10 +42,18 @@ struct ContentView: View {
             }
             .padding()
             .navigationTitle("Instafilter")
+            .confirmationDialog("Change filter", isPresented: $showingConfirmationDialog) {
+                Button("Vignette") { setFilter(CIFilter.vignette()) }
+                Button("Dotscreen") { setFilter(CIFilter.dotScreen()) }
+                Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
+                Button("Pixellate") { setFilter(CIFilter.pixellate()) }
+                Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
+                Button("Cancel", role: .cancel) { }
+            }
         }
     }
     func changeFilter() {
-        
+        showingConfirmationDialog = true
     }
     func loadImage()  {
         Task {
@@ -57,13 +66,22 @@ struct ContentView: View {
         }
     }
     func applyProcess() {
-        currentFilter.intensity = Float(intensityAmount)
+        let inputKeys = currentFilter.inputKeys
+
+        if inputKeys.contains(kCIInputIntensityKey) {
+            currentFilter.setValue(intensityAmount, forKey: kCIInputIntensityKey) }
+        if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(intensityAmount * 200, forKey: kCIInputRadiusKey) }
+        if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(intensityAmount * 10, forKey: kCIInputScaleKey) }
         
         guard let outputImage = try currentFilter.outputImage else { return }
         guard let cgImage = try context.createCGImage(outputImage, from: outputImage.extent) else { return }
         
         let uiImage = UIImage(cgImage: cgImage)
         processedImage = Image(uiImage: uiImage)
+    }
+    func setFilter(_ filter: CIFilter) {
+        currentFilter = filter
+        loadImage()
     }
 }
 
