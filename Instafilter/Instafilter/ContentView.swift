@@ -72,6 +72,7 @@ struct ContentView: View {
             currentFilter.setValue(intensityAmount, forKey: kCIInputIntensityKey) }
         if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(intensityAmount * 200, forKey: kCIInputRadiusKey) }
         if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(intensityAmount * 10, forKey: kCIInputScaleKey) }
+        if inputKeys.contains(kCIInputWidthKey) { currentFilter.setValue(intensityAmount * 10, forKey: kCIInputWidthKey) }
         
         guard let outputImage = try currentFilter.outputImage else { return }
         guard let cgImage = try context.createCGImage(outputImage, from: outputImage.extent) else { return }
