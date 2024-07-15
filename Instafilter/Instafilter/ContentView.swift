@@ -14,6 +14,8 @@ import StoreKit
 struct ContentView: View {
     @State private var processedImage: Image?
     @State private var intensityAmount = 0.4
+    @State private var scaleAmount = 0.4
+    @State private var widthAmount = 0.4
     @State private var selectedItem: PhotosPickerItem?
     @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
     @State private var showingConfirmationDialog = false
@@ -38,8 +40,23 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Text("Intensity")
+                    Spacer()
                     Slider(value: $intensityAmount)
                         .onChange(of: intensityAmount, applyProcess)
+                        .disabled(processedImage == nil ? true : false)
+                }
+                HStack {
+                    Text("Scale")
+                    Spacer()
+                    Slider(value: $scaleAmount)
+                        .onChange(of: scaleAmount, applyProcess)
+                        .disabled(processedImage == nil ? true : false)
+                }
+                HStack {
+                    Text("Width")
+                    Spacer()
+                    Slider(value: $widthAmount)
+                        .onChange(of: widthAmount, applyProcess)
                         .disabled(processedImage == nil ? true : false)
                 }
                 HStack {
@@ -78,12 +95,12 @@ struct ContentView: View {
     }
     func applyProcess() {
         let inputKeys = currentFilter.inputKeys
-
+        
         if inputKeys.contains(kCIInputIntensityKey) {
             currentFilter.setValue(intensityAmount, forKey: kCIInputIntensityKey) }
         if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(intensityAmount * 200, forKey: kCIInputRadiusKey) }
-        if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(intensityAmount * 10, forKey: kCIInputScaleKey) }
-        if inputKeys.contains(kCIInputWidthKey) { currentFilter.setValue(intensityAmount * 10, forKey: kCIInputWidthKey) }
+        if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(scaleAmount * 10, forKey: kCIInputScaleKey) }
+        if inputKeys.contains(kCIInputWidthKey) { currentFilter.setValue(widthAmount * 10, forKey: kCIInputWidthKey) }
         
         guard let outputImage = try currentFilter.outputImage else { return }
         guard let cgImage = try context.createCGImage(outputImage, from: outputImage.extent) else { return }
@@ -95,7 +112,7 @@ struct ContentView: View {
         currentFilter = filter
         loadImage()
         filterCount += 1
-        if filterCount >= 3 {
+        if filterCount % 10 == 1 {
             requestReview()
         }
     }
