@@ -76,6 +76,8 @@ struct ContentView: View {
                 Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
                 Button("Pixellate") { setFilter(CIFilter.pixellate()) }
                 Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
+                Button("X-Ray") { setFilter(CIFilter.xRay()) }
+                Button("Circularscreen") { setFilter(CIFilter.circularScreen()) }
                 Button("Cancel", role: .cancel) { }
             }
         }
