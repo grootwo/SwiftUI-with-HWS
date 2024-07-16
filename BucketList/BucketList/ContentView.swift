@@ -7,19 +7,50 @@
 
 import SwiftUI
 
+enum LoadingState {
+    case before
+    case loading
+    case success
+    case failed
+}
+
 struct ContentView: View {
+    @State private var loadingState = LoadingState.before
     var body: some View {
-        Button("Write and Read the data") {
-            let data = Data("Test Data".utf8)
-            let url = URL.documentsDirectory.appending(path: "message.txt")
-            do {
-                try data.write(to: url, options: [.atomic, .completeFileProtection])
-                let input = try String(contentsOf: url)
-                print(input)
-            } catch {
-                print(error.localizedDescription)
-            }
+        switch loadingState {
+        case .before:
+            BeforeView()
+        case .loading:
+            LoadingView()
+        case .success:
+            SuccessView()
+        case .failed:
+            FailedView()
         }
+    }
+}
+
+struct BeforeView: View {
+    var body: some View {
+        Text("Before View")
+    }
+}
+
+struct LoadingView: View {
+    var body: some View {
+        Text("Loading View")
+    }
+}
+
+struct SuccessView: View {
+    var body: some View {
+        Text("Success View")
+    }
+}
+
+struct FailedView: View {
+    var body: some View {
+        Text("Failed View")
     }
 }
 
