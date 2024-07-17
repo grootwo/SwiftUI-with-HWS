@@ -5,28 +5,38 @@
 //  Created by Groo on 7/16/24.
 //
 
-import MapKit
 import SwiftUI
-
-struct Location: Identifiable {
-    var id = UUID()
-    var name: String
-    var coordinate: CLLocationCoordinate2D
-}
+import LocalAuthentication
 
 struct ContentView: View {
-    let locations = [
-        Location(name: "Buckingham Palace", coordinate: CLLocationCoordinate2D(latitude: 51.501, longitude: -0.141)),
-        Location(name: "Tower of London", coordinate: CLLocationCoordinate2D(latitude: 51.508, longitude: -0.076))
-    ]
+    @State private var isLocked = true
     var body: some View {
-        MapReader { proxy in
-            Map()
-                .onTapGesture { position in
-                    if let coordinate = proxy.convert(position, from: .local) {
-                        print(coordinate)
-                    }
+        VStack {
+            if isLocked {
+                Image(systemName: "lock")
+                    .font(.largeTitle)
+            } else {
+                Image(systemName: "lock.open")
+                    .font(.largeTitle)
+            }
+        }
+        .onAppear(perform: authenticate)
+    }
+    func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) { // check if biometric is possible
+            let reason = "We need to unlock your daaaata"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                if success {
+                    // when unlocking success
+                    isLocked = false
+                } else {
+                    // when unlocking failed
                 }
+            }
+        } else {
+            // cannot use biometrics
         }
     }
 }
