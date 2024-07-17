@@ -8,21 +8,25 @@
 import MapKit
 import SwiftUI
 
+struct Location: Identifiable {
+    var id = UUID()
+    var name: String
+    var coordinate: CLLocationCoordinate2D
+}
+
 struct ContentView: View {
-    @State private var position = MapCameraPosition.region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 52.5200066, longitude: 13.404954), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)))
+    let locations = [
+        Location(name: "Buckingham Palace", coordinate: CLLocationCoordinate2D(latitude: 51.501, longitude: -0.141)),
+        Location(name: "Tower of London", coordinate: CLLocationCoordinate2D(latitude: 51.508, longitude: -0.076))
+    ]
     var body: some View {
-        VStack {
-            Map(position: $position)
-                .mapStyle(.hybrid)
-                .onMapCameraChange { context in
-                    print(context.region)
-                }
-            HStack {
-                Button("Berlin") {
-                    position = MapCameraPosition.region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 52.5200066, longitude: 13.404954), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)))
-                }
-                Button("Busan") {                        
-                    position = MapCameraPosition.region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 35.2100142, longitude: 129.0688702), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)))
+        Map {
+            ForEach(locations) { location in
+                Annotation(location.name, coordinate: location.coordinate) {
+                    Text(location.name)
+                        .padding()
+                        .background(.yellow.gradient)
+                        .clipShape(.capsule)
                 }
             }
         }
