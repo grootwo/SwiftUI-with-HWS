@@ -20,15 +20,13 @@ struct ContentView: View {
         Location(name: "Tower of London", coordinate: CLLocationCoordinate2D(latitude: 51.508, longitude: -0.076))
     ]
     var body: some View {
-        Map {
-            ForEach(locations) { location in
-                Annotation(location.name, coordinate: location.coordinate) {
-                    Text(location.name)
-                        .padding()
-                        .background(.yellow.gradient)
-                        .clipShape(.capsule)
+        MapReader { proxy in
+            Map()
+                .onTapGesture { position in
+                    if let coordinate = proxy.convert(position, from: .local) {
+                        print(coordinate)
+                    }
                 }
-            }
         }
     }
 }
