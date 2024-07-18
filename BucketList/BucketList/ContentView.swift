@@ -6,37 +6,18 @@
 //
 
 import SwiftUI
-import LocalAuthentication
+import MapKit
 
 struct ContentView: View {
-    @State private var isLocked = true
+    let startPosition = MapCameraPosition.region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 56, longitude: -3), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)))
     var body: some View {
-        VStack {
-            if isLocked {
-                Image(systemName: "lock")
-                    .font(.largeTitle)
-            } else {
-                Image(systemName: "lock.open")
-                    .font(.largeTitle)
-            }
-        }
-        .onAppear(perform: authenticate)
-    }
-    func authenticate() {
-        let context = LAContext()
-        var error: NSError?
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) { // check if biometric is possible
-            let reason = "We need to unlock your daaaata"
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                if success {
-                    // when unlocking success
-                    isLocked = false
-                } else {
-                    // when unlocking failed
+        MapReader { proxy in
+            Map(initialPosition: startPosition)
+                .onTapGesture { position in
+                    if let coordinate = proxy.convert(position, from: .local) {
+                        print("coordinate: \(coordinate)")
+                    }
                 }
-            }
-        } else {
-            // cannot use biometrics
         }
     }
 }
