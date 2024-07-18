@@ -11,17 +11,15 @@ import MapKit
 struct ContentView: View {
     let startPosition = MapCameraPosition.region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 56, longitude: -3), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)))
     @State private var locations = [Location]()
-    let emojis = ["🐹", "🍦", "🍺", "⚽️"]
     var body: some View {
         MapReader { proxy in
             Map(initialPosition: startPosition) {
                 ForEach(locations) { location in
                     Annotation(location.name, coordinate: location.coordinate) {
-                        Text(emojis[Int.random(in: 0..<emojis.count)])
+                        Text("❣️")
                             .font(.title)
                             .background(.white)
                             .clipShape(.circle)
-                            .frame(width: 40, height: 40)
                     }
                     .annotationTitles(.hidden)
                 }
