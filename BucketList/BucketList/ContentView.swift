@@ -11,6 +11,7 @@ import MapKit
 struct ContentView: View {
     let startPosition = MapCameraPosition.region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 56, longitude: -3), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)))
     @State private var locations = [Location]()
+    @State private var selectedPlace: Location?
     var body: some View {
         MapReader { proxy in
             Map(initialPosition: startPosition) {
@@ -20,8 +21,10 @@ struct ContentView: View {
                             .font(.title)
                             .background(.white)
                             .clipShape(.circle)
+                            .onLongPressGesture {
+                                selectedPlace = location
+                            }
                     }
-                    .annotationTitles(.hidden)
                 }
             }
             .onTapGesture { position in
@@ -30,6 +33,9 @@ struct ContentView: View {
                     locations.append(Location(name: "new location", longitude: coordinate.longitude, latitude: coordinate.latitude))
                 }
             }
+        }
+        .sheet(item: $selectedPlace) { place in
+            Text(place.name)
         }
     }
 }
