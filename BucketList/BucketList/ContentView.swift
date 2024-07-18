@@ -30,7 +30,7 @@ struct ContentView: View {
             .onTapGesture { position in
                 if let coordinate = proxy.convert(position, from: .local) {
                     print("coordinate: \(coordinate)")
-                    locations.append(Location(name: "new location", longitude: coordinate.longitude, latitude: coordinate.latitude))
+                    locations.append(Location(id: UUID(), name: "new location", longitude: coordinate.longitude, latitude: coordinate.latitude))
                 }
             }
         }

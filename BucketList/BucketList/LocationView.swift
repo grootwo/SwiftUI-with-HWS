@@ -21,6 +21,7 @@ struct LocationView: View {
             .toolbar {
                 Button("Save") {
                     var newLocation = location
+                    newLocation.id = UUID()
                     newLocation.name = name
                     onSave(newLocation)
                     dismiss()
