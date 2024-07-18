@@ -10,24 +10,31 @@ import SwiftUI
 struct LocationView: View {
     @Environment(\.dismiss) var dismiss
     var location: Location
+    var onSave: (Location) -> Void
     @State private var name: String
     var body: some View {
-        Form {
-            TextField("Place name", text: $name)
-        }
-        .navigationTitle("Selected Place")
-        .toolbar {
-            Button("Save") {
-                dismiss()
+        NavigationStack {
+            Form {
+                TextField("Place name", text: $name)
+            }
+            .navigationTitle("Selected Place")
+            .toolbar {
+                Button("Save") {
+                    var newLocation = location
+                    newLocation.name = name
+                    onSave(newLocation)
+                    dismiss()
+                }
             }
         }
     }
-    init(location: Location) {
+    init(location: Location, onSave: @escaping (Location) -> Void) {
         self.location = location
+        self.onSave = onSave
         _name = State(initialValue: location.name)
     }
 }
 
 #Preview {
-    LocationView(location: .example)
+    LocationView(location: .example) { _ in }
 }
