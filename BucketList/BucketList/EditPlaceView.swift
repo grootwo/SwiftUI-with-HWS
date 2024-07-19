@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LocationView: View {
+struct EditPlaceView: View {
     @Environment(\.dismiss) var dismiss
     var location: Location
     var onSave: (Location) -> Void
@@ -37,5 +37,5 @@ struct LocationView: View {
 }
 
 #Preview {
-    LocationView(location: .example) { _ in }
+    EditPlaceView(location: .example) { _ in }
 }
