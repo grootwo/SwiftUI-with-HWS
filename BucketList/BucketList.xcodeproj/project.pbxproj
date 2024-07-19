@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B450BED2C48E6D3008C47FA /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B450BEC2C48E6D3008C47FA /* Location.swift */; };
 		1B450BEF2C48FBB0008C47FA /* EditPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B450BEE2C48FBB0008C47FA /* EditPlaceView.swift */; };
+		1B70880F2C4A6031000948A8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B70880E2C4A6031000948A8 /* Result.swift */; };
 		1BD714742C45EECE00B11274 /* BucketListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD714732C45EECE00B11274 /* BucketListApp.swift */; };
 		1BD714762C45EECE00B11274 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD714752C45EECE00B11274 /* ContentView.swift */; };
 		1BD714782C45EECF00B11274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BD714772C45EECF00B11274 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		1B450BEC2C48E6D3008C47FA /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1B450BEE2C48FBB0008C47FA /* EditPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlaceView.swift; sourceTree = "<group>"; };
+		1B70880E2C4A6031000948A8 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		1BD714702C45EECE00B11274 /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD714732C45EECE00B11274 /* BucketListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListApp.swift; sourceTree = "<group>"; };
 		1BD714752C45EECE00B11274 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			children = (
 				1BD714732C45EECE00B11274 /* BucketListApp.swift */,
 				1BD714752C45EECE00B11274 /* ContentView.swift */,
+				1B70880E2C4A6031000948A8 /* Result.swift */,
 				1B450BEE2C48FBB0008C47FA /* EditPlaceView.swift */,
 				1B450BEC2C48E6D3008C47FA /* Location.swift */,
 				1BD714772C45EECF00B11274 /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BD714762C45EECE00B11274 /* ContentView.swift in Sources */,
+				1B70880F2C4A6031000948A8 /* Result.swift in Sources */,
 				1B450BEF2C48FBB0008C47FA /* EditPlaceView.swift in Sources */,
 				1B450BED2C48E6D3008C47FA /* Location.swift in Sources */,
 				1BD714742C45EECE00B11274 /* BucketListApp.swift in Sources */,
