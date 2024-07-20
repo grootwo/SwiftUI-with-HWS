@@ -28,16 +28,13 @@ struct ContentView: View {
             }
             .onTapGesture { position in
                 if let coordinate = proxy.convert(position, from: .local) {
-                    print("coordinate: \(coordinate)")
-                    viewModel.locations.append(Location(id: UUID(), name: "new location", longitude: coordinate.longitude, latitude: coordinate.latitude))
+                    viewModel.addLocation(at: coordinate)
                 }
             }
         }
         .sheet(item: $viewModel.selectedPlace) { place in
-            EditPlaceView(location: place) { newLocation in
-                if let index = viewModel.locations.firstIndex(of: place) {
-                    viewModel.locations[index] = newLocation
-                }
+            EditPlaceView(location: place) {
+                viewModel.update(location: $0)
             }
         }
     }
