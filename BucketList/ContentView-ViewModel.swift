@@ -12,17 +12,39 @@ import CoreLocation
 extension ContentView {
     @Observable
     class ViewModel {
-        var locations = [Location]()
+        private(set) var locations: [Location]
         var selectedPlace: Location?
+        let savePath = URL.documentsDirectory.appending(path: "SavedPlaces")
+        
+        init() {
+            do {
+                let data = try Data(contentsOf: savePath)
+                let decoded = try JSONDecoder().decode([Location].self, from: data)
+                locations = decoded
+            } catch {
+                locations = []
+            }
+        }
+        
+        func save() {
+            do {
+                let data = try JSONEncoder().encode(locations)
+                try data.write(to: savePath, options: [.atomic, .completeFileProtection])
+            } catch {
+                print("Unable to save data.")
+            }
+        }
         
         func addLocation(at coordinate: CLLocationCoordinate2D) {
             locations.append(Location(id: UUID(), name: "new location", longitude: coordinate.longitude, latitude: coordinate.latitude))
+            save()
         }
         
         func update(location: Location) {
             guard let selectedPlace else { return }
             if let index = locations.firstIndex(of: selectedPlace) {
                 locations[index] = location
+                save()
             }
         }
     }
