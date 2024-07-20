@@ -10,19 +10,18 @@ import MapKit
 
 struct ContentView: View {
     let startPosition = MapCameraPosition.region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 56, longitude: -3), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)))
-    @State private var locations = [Location]()
-    @State private var selectedPlace: Location?
+    @State private var viewModel = ViewModel()
     var body: some View {
         MapReader { proxy in
             Map(initialPosition: startPosition) {
-                ForEach(locations) { location in
+                ForEach(viewModel.locations) { location in
                     Annotation(location.name, coordinate: location.coordinate) {
                         Text("❣️")
                             .font(.title)
                             .background(.white)
                             .clipShape(.circle)
                             .onLongPressGesture {
-                                selectedPlace = location
+                                viewModel.selectedPlace = location
                             }
                     }
                 }
@@ -30,14 +29,14 @@ struct ContentView: View {
             .onTapGesture { position in
                 if let coordinate = proxy.convert(position, from: .local) {
                     print("coordinate: \(coordinate)")
-                    locations.append(Location(id: UUID(), name: "new location", longitude: coordinate.longitude, latitude: coordinate.latitude))
+                    viewModel.locations.append(Location(id: UUID(), name: "new location", longitude: coordinate.longitude, latitude: coordinate.latitude))
                 }
             }
         }
-        .sheet(item: $selectedPlace) { place in
+        .sheet(item: $viewModel.selectedPlace) { place in
             EditPlaceView(location: place) { newLocation in
-                if let index = locations.firstIndex(of: place) {
-                    locations[index] = newLocation
+                if let index = viewModel.locations.firstIndex(of: place) {
+                    viewModel.locations[index] = newLocation
                 }
             }
         }
