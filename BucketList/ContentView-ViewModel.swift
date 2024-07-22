@@ -17,6 +17,7 @@ extension ContentView {
         var selectedPlace: Location?
         let savePath = URL.documentsDirectory.appending(path: "SavedPlaces")
         var isUnlocked = false
+        var isShowingAlert = false
         
         init() {
             do {
@@ -63,6 +64,7 @@ extension ContentView {
                     }
                 }
             } else {
+                self.isShowingAlert = true
                 print("Unable to use biometrics")
             }
         }

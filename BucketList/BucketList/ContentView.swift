@@ -57,6 +57,11 @@ struct ContentView: View {
                 viewModel.authenticate()
             }
             .buttonStyle(.borderedProminent)
+            .alert("Unable to use biometircs", isPresented: $viewModel.isShowingAlert) {
+                Button("Okay", role: .cancel) { }
+            } message: {
+                Text("Please check your settings.")
+            }
         }
     }
 }
