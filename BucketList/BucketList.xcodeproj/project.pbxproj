@@ -45,7 +45,6 @@
 		1BD714672C45EECE00B11274 = {
 			isa = PBXGroup;
 			children = (
-				1BA84DB82C4B80A80055DF98 /* ContentView-ViewModel.swift */,
 				1BD714722C45EECE00B11274 /* BucketList */,
 				1BD714712C45EECE00B11274 /* Products */,
 			);
@@ -62,14 +61,15 @@
 		1BD714722C45EECE00B11274 /* BucketList */ = {
 			isa = PBXGroup;
 			children = (
-				1BD714732C45EECE00B11274 /* BucketListApp.swift */,
-				1BD714752C45EECE00B11274 /* ContentView.swift */,
-				1BF435232C4F78EF00AAA1AB /* EditPlaceView+ViewModel.swift */,
-				1B70880E2C4A6031000948A8 /* Result.swift */,
-				1B450BEE2C48FBB0008C47FA /* EditPlaceView.swift */,
-				1B450BEC2C48E6D3008C47FA /* Location.swift */,
 				1BD714772C45EECF00B11274 /* Assets.xcassets */,
+				1BD714732C45EECE00B11274 /* BucketListApp.swift */,
+				1BA84DB82C4B80A80055DF98 /* ContentView-ViewModel.swift */,
+				1BD714752C45EECE00B11274 /* ContentView.swift */,
+				1B450BEE2C48FBB0008C47FA /* EditPlaceView.swift */,
+				1BF435232C4F78EF00AAA1AB /* EditPlaceView+ViewModel.swift */,
+				1B450BEC2C48E6D3008C47FA /* Location.swift */,
 				1BD714792C45EECF00B11274 /* Preview Content */,
+				1B70880E2C4A6031000948A8 /* Result.swift */,
 			);
 			path = BucketList;
 			sourceTree = "<group>";
