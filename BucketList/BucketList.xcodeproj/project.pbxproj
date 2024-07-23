@@ -15,6 +15,7 @@
 		1BD714762C45EECE00B11274 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD714752C45EECE00B11274 /* ContentView.swift */; };
 		1BD714782C45EECF00B11274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BD714772C45EECF00B11274 /* Assets.xcassets */; };
 		1BD7147B2C45EECF00B11274 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BD7147A2C45EECF00B11274 /* Preview Assets.xcassets */; };
+		1BF435242C4F78EF00AAA1AB /* EditPlaceView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF435232C4F78EF00AAA1AB /* EditPlaceView+ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		1BD714752C45EECE00B11274 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1BD714772C45EECF00B11274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BD7147A2C45EECF00B11274 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1BF435232C4F78EF00AAA1AB /* EditPlaceView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditPlaceView+ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				1BD714732C45EECE00B11274 /* BucketListApp.swift */,
 				1BD714752C45EECE00B11274 /* ContentView.swift */,
+				1BF435232C4F78EF00AAA1AB /* EditPlaceView+ViewModel.swift */,
 				1B70880E2C4A6031000948A8 /* Result.swift */,
 				1B450BEE2C48FBB0008C47FA /* EditPlaceView.swift */,
 				1B450BEC2C48E6D3008C47FA /* Location.swift */,
@@ -151,6 +154,7 @@
 			files = (
 				1BD714762C45EECE00B11274 /* ContentView.swift in Sources */,
 				1BA84DB92C4B80A80055DF98 /* ContentView-ViewModel.swift in Sources */,
+				1BF435242C4F78EF00AAA1AB /* EditPlaceView+ViewModel.swift in Sources */,
 				1B70880F2C4A6031000948A8 /* Result.swift in Sources */,
 				1B450BEF2C48FBB0008C47FA /* EditPlaceView.swift in Sources */,
 				1B450BED2C48E6D3008C47FA /* Location.swift in Sources */,
