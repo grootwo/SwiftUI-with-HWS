@@ -13,12 +13,15 @@ extension EditPlaceView {
     }
     @Observable
     class ViewModel {
+        var location: Location
         var name: String
         var loadingState = LoadingState.loading
         var pages = [Page]()
         
-        init(name: String) {
-            self.name = name
+        init(location: Location, name: String) {
+            self.location = location
+            self.name = location.name
         }
+        
     }
 }
