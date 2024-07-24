@@ -22,6 +22,19 @@ struct RatingView: View {
                 .buttonStyle(.plain)
             }
         }
+        .accessibilityElement()
+        .accessibilityLabel("rating")
+        .accessibilityValue(rating == 1 ? "1 star": "\(rating) stars")
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment:
+                if rating < maxRating { rating += 1 }
+            case .decrement:
+                if rating > 1 { rating -= 1 }
+            default:
+                print("not handled")
+            }
+        }
     }
 }
 
