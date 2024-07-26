@@ -12,6 +12,7 @@
 		1BBB4B8D2C53A90200617BF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB4B8C2C53A90200617BF5 /* Assets.xcassets */; };
 		1BBB4B902C53A90200617BF5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB4B8F2C53A90200617BF5 /* Preview Assets.xcassets */; };
 		1BBB4B972C53A9B400617BF5 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB4B962C53A9B400617BF5 /* Photo.swift */; };
+		1BBB4B992C53AC9900617BF5 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB4B982C53AC9900617BF5 /* AddPhotoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		1BBB4B8C2C53A90200617BF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BBB4B8F2C53A90200617BF5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1BBB4B962C53A9B400617BF5 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		1BBB4B982C53AC9900617BF5 /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				1BBB4B882C53A90200617BF5 /* AlbumApp.swift */,
 				1BBB4B8A2C53A90200617BF5 /* ContentView.swift */,
+				1BBB4B982C53AC9900617BF5 /* AddPhotoView.swift */,
 				1BBB4B962C53A9B400617BF5 /* Photo.swift */,
 				1BBB4B8C2C53A90200617BF5 /* Assets.xcassets */,
 				1BBB4B8E2C53A90200617BF5 /* Preview Content */,
@@ -143,6 +146,7 @@
 				1BBB4B972C53A9B400617BF5 /* Photo.swift in Sources */,
 				1BBB4B8B2C53A90200617BF5 /* ContentView.swift in Sources */,
 				1BBB4B892C53A90200617BF5 /* AlbumApp.swift in Sources */,
+				1BBB4B992C53AC9900617BF5 /* AddPhotoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
