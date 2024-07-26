@@ -6,16 +6,24 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) var modelContext
+    @Query var photos: [Photo]
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        LazyVStack {
+            VStack {
+                ForEach(photos) { photo in
+                    Text(photo.name)
+                }
+            }
         }
-        .padding()
+        .toolbar {
+            Button("Add photo", systemImage: "plus") {
+                
+            }
+        }
     }
 }
 
