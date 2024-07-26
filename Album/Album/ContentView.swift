@@ -12,16 +12,18 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Query var photos: [Photo]
     var body: some View {
-        LazyVStack {
-            VStack {
-                ForEach(photos) { photo in
-                    Text(photo.name)
+        NavigationStack {
+            LazyVStack {
+                VStack {
+                    ForEach(photos) { photo in
+                        Text(photo.name)
+                    }
                 }
             }
-        }
-        .toolbar {
-            Button("Add photo", systemImage: "plus") {
-                
+            .toolbar {
+                NavigationLink("Add a photo") {
+                    AddPhotoView()
+                }
             }
         }
     }
