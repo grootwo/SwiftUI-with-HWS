@@ -11,6 +11,7 @@ import PhotosUI
 
 struct AddPhotoView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(\.dismiss) var dismiss
     @State private var pickerItem: PhotosPickerItem?
     @State private var selectedPhoto: Image?
     @State private var name = ""
@@ -19,11 +20,7 @@ struct AddPhotoView: View {
             Spacer()
             PhotosPicker(selection: $pickerItem, matching: .images) {
                 if selectedPhoto == nil {
-                    Image(systemName: "photo.badge.plus")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150)
-                        .padding()
+                    ContentUnavailableView("No Picture", systemImage: "photo.badge.plus", description: Text("Tap to import a photo"))
                 } else {
                     selectedPhoto!
                         .resizable()
@@ -42,7 +39,12 @@ struct AddPhotoView: View {
         .padding()
         .toolbar {
             Button("Save") {
-                // inset a photo into modelContext
+                Task {
+                    guard let imageData = try await pickerItem?.loadTransferable(type: Data.self) else { return }
+                    var newPhoto = Photo(name: name, photo: imageData)
+                    modelContext.insert(newPhoto)
+                }
+                dismiss()
             }
         }
     }
