@@ -46,6 +46,7 @@ struct AddPhotoView: View {
                 }
                 dismiss()
             }
+            .disabled(name == "" || pickerItem == nil)
         }
     }
 }
