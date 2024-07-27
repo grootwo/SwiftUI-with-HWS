@@ -20,12 +20,14 @@ struct ContentView: View {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(photos) { photo in
-                        VStack {
-                            Image(data: photo.photo)!
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 150)
-                            Text(photo.name)
+                        NavigationLink(destination: PhotoView(photo: photo)) {
+                            VStack {
+                                Image(data: photo.photo)!
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 150)
+                                Text(photo.name)
+                            }
                         }
                     }
                 }
