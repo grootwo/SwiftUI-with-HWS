@@ -12,10 +12,10 @@ import SwiftData
 class Photo: Identifiable {
     let id = UUID()
     var name: String
-    @Attribute(.externalStorage) var photoData: Data
+    @Attribute(.externalStorage) var photo: Data
     
-    init(name: String, photoData: Data) {
+    init(name: String, photo: Data) {
         self.name = name
-        self.photoData = photoData
+        self.photo = photo
     }
 }

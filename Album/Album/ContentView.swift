@@ -18,7 +18,7 @@ struct ContentView: View {
                 VStack {
                     ForEach(photos) { photo in
                         Text(photo.name)
-                        Image(data: photo.photoData)
+                        Image(data: photo.photo)
                     }
                 }
             }
