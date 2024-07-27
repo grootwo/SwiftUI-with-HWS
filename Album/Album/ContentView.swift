@@ -10,13 +10,15 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var photos: [Photo]
+    @Query(sort: \Photo.name) var photos: [Photo]
+    @State private var image: Image?
     var body: some View {
         NavigationStack {
             LazyVStack {
                 VStack {
                     ForEach(photos) { photo in
                         Text(photo.name)
+                        Image(data: photo.photoData)
                     }
                 }
             }

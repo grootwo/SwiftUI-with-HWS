@@ -41,7 +41,7 @@ struct AddPhotoView: View {
             Button("Save") {
                 Task {
                     guard let imageData = try await pickerItem?.loadTransferable(type: Data.self) else { return }
-                    var newPhoto = Photo(name: name, photo: imageData)
+                    let newPhoto = Photo(name: name, photoData: imageData)
                     modelContext.insert(newPhoto)
                 }
                 dismiss()
