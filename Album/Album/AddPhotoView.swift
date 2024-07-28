@@ -15,6 +15,7 @@ struct AddPhotoView: View {
     @State private var pickerItem: PhotosPickerItem?
     @State private var selectedPhoto: Image?
     @State private var name = ""
+    let locationFetcher = LocationFetcher()
     var body: some View {
         VStack {
             Spacer()
@@ -37,12 +38,22 @@ struct AddPhotoView: View {
                 .font(.title)
         }
         .padding()
+        .onAppear(perform: {
+            locationFetcher.start()
+        })
         .toolbar {
             Button("Save") {
                 Task {
                     guard let imageData = try await pickerItem?.loadTransferable(type: Data.self) else { return }
-                    let newPhoto = Photo(name: name, photo: imageData)
-                    modelContext.insert(newPhoto)
+                    if let location = locationFetcher.lastKnownLocation {
+                        print("Your location is \(location)")
+                        let newPhoto = Photo(name: name, photo: imageData, longitude: location.longitude, latitude: location.latitude)
+                        modelContext.insert(newPhoto)
+                    } else {
+                        print("Your location is unknown")
+                        let newPhoto = Photo(name: name, photo: imageData, longitude: nil, latitude: nil)
+                        modelContext.insert(newPhoto)
+                    }
                 }
                 dismiss()
             }
