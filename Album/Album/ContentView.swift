@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import MapKit
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
@@ -17,25 +18,36 @@ struct ContentView: View {
     ]
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(photos) { photo in
-                        NavigationLink(destination: PhotoView(photo: photo)) {
-                            VStack {
-                                Image(data: photo.photo)!
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 150)
-                                Text(photo.name)
+            TabView {
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        ForEach(photos) { photo in
+                            NavigationLink(destination: PhotoView(photo: photo)) {
+                                VStack {
+                                    Image(data: photo.photo)!
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 150)
+                                    Text(photo.name)
+                                }
                             }
                         }
                     }
                 }
-            }
-            .toolbar {
-                NavigationLink("Add a photo") {
-                    AddPhotoView()
+                .tabItem {
+                    Image(systemName: "square.split.2x2")
+                    Text("List")
                 }
+                .toolbar {
+                    NavigationLink("Add a photo") {
+                        AddPhotoView()
+                    }
+                }
+                Map()
+                    .tabItem {
+                        Image(systemName: "mappin.and.ellipse.circle")
+                        Text("Map")
+                    }
             }
         }
     }
