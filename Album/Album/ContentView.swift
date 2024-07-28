@@ -36,14 +36,14 @@ struct ContentView: View {
                 }
                 .tabItem {
                     Image(systemName: "square.split.2x2")
-                    Text("List")
+                    Text("Grid")
                 }
                 .toolbar {
                     NavigationLink("Add a photo") {
                         AddPhotoView()
                     }
                 }
-                Map()
+                MapView()
                     .tabItem {
                         Image(systemName: "mappin.and.ellipse.circle")
                         Text("Map")
