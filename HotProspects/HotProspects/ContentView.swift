@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection = Set<String>()
+    let animals = ["cat", "dog", "elephant", "koala"]
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack{
+            VStack {
+                List(animals, id: \.self, selection: $selection) { animal in
+                    Text(animal)
+                }
+                if selection.isEmpty == false {
+                    Text("your selection: \(selection)")
+                }
+            }
+            .toolbar {
+                EditButton()
+            }
         }
-        .padding()
     }
 }
 
