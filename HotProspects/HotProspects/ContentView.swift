@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection = Set<String>()
-    let animals = ["cat", "dog", "elephant", "koala"]
+    @State private var selectedTab = 1
     var body: some View {
-        NavigationStack{
-            VStack {
-                List(animals, id: \.self, selection: $selection) { animal in
-                    Text(animal)
-                }
-                if selection.isEmpty == false {
-                    Text("your selection: \(selection)")
-                }
+        TabView(selection: $selectedTab) {
+            Button("Go to tab 2") {
+                selectedTab = 2
             }
-            .toolbar {
-                EditButton()
+            .tabItem {
+                Label("One", systemImage: "1.circle")
             }
+            .tag(1)
+            Button("Go to tab 1") {
+                selectedTab = 1
+            }
+            .tabItem {
+                Label("Two", systemImage: "2.circle")
+            }
+            .tag(2)
         }
     }
 }
