@@ -6,22 +6,28 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
     var body: some View {
-        List {
-            Text("You can swipe this row")
-                .swipeActions {
-                    Button("Like", systemImage: "heart.fill") {
-                        print("like")
-                    }
-                    .tint(.pink)
-                }
-                .swipeActions(edge: .leading) {
-                    Button("Bookmark", systemImage: "bookmark.fill") {
-                        print("bookmark")
+        VStack {
+            Button("get permission") {
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                    if success {
+                        print("got permission")
+                    } else {
+                        print("error: \(error?.localizedDescription)")
                     }
                 }
+            }
+            Button("send notification") {
+                let content = UNMutableNotificationContent()
+                content.title = "💡 This is notification"
+                content.body = "You are lucky 🍀"
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request)
+            }
         }
     }
 }
