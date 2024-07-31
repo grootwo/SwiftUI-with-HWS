@@ -8,23 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var backgroundColor = Color.teal
     var body: some View {
-        ZStack {
-            Circle()
-                .foregroundColor(backgroundColor)
-            Image(.monkey)
-                .resizable()
-                .scaledToFit()
-                .contextMenu {
-                    Button("Pink", role: .destructive) {
-                        backgroundColor = Color.pink
+        List {
+            Text("You can swipe this row")
+                .swipeActions {
+                    Button("Like", systemImage: "heart.fill") {
+                        print("like")
                     }
-                    Button("Brown", role: .cancel) {
-                        backgroundColor = Color.brown
-                    }
-                    Button("Teal", systemImage: "suit.heart") {
-                        backgroundColor = Color.teal
+                    .tint(.pink)
+                }
+                .swipeActions(edge: .leading) {
+                    Button("Bookmark", systemImage: "bookmark.fill") {
+                        print("bookmark")
                     }
                 }
         }
