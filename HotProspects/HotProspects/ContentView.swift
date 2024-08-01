@@ -9,14 +9,25 @@ import SwiftUI
 import SamplePackage
 
 struct ContentView: View {
-    let numbers = 1...100
-    var result: String {
-        let selectedNumbers = numbers.random(5).sorted()
-        let strings = selectedNumbers.map(String.init)
-        return strings.formatted()
-    }
     var body: some View {
-        Text(result)
+        TabView {
+            ProspectsView(filterType: .none)
+                .tabItem {
+                    Label("Everyone", systemImage: "person.3")
+                }
+            ProspectsView(filterType: .contacted)
+                .tabItem {
+                    Label("Contacted", systemImage: "checkmark.circle")
+                }
+            ProspectsView(filterType: .uncontacted)
+                .tabItem {
+                    Label("Uncontacted", systemImage: "questionmark.diamond")
+                }
+            MeView()
+                .tabItem {
+                    Label("Me", systemImage: "person.crop.square")
+                }
+        }
     }
 }
 
