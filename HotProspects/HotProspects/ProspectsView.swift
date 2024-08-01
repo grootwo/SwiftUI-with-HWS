@@ -24,10 +24,17 @@ struct ProspectsView: View {
         }
     }
     @Environment(\.modelContext) var modelContext
-    @Query(sort: \Prospect.name) var prospects: [Prospect]
+    @Query var prospects: [Prospect]
     var body: some View {
         NavigationStack {
-            Text("people: \(prospects.count)")
+            List(prospects) { prospect in
+                VStack(alignment: .leading) {
+                    Text(prospect.name)
+                        .font(.headline)
+                    Text(prospect.emailAddress)
+                        .foregroundStyle(.secondary)
+                }
+            }
                 .navigationTitle(title)
                 .toolbar {
                     Button("Scan", systemImage: "qrcode.viewfinder") {
@@ -35,6 +42,15 @@ struct ProspectsView: View {
                         modelContext.insert(newProspect)
                     }
                 }
+        }
+    }
+    init(filterType: FilterType) {
+        self.filterType = filterType
+        if filterType != .none {
+            let isContatedOnly = filterType == .contacted
+            _prospects = Query(filter: #Predicate<Prospect> {
+                $0.isContated == isContatedOnly
+            }, sort: \Prospect.name)
         }
     }
 }
