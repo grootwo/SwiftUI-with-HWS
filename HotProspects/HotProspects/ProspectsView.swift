@@ -32,7 +32,7 @@ struct ProspectsView: View {
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selectedProspects) { prospect in
-                HStack{
+                HStack {
                     if filterType == .none {
                         if prospect.isContacted == true {
                             Image(systemName: "person.crop.circle.badge.checkmark")

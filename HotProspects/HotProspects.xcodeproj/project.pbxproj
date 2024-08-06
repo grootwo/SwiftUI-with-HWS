@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B026F082C5A061900C47FD4 /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = 1B026F072C5A061900C47FD4 /* SamplePackage */; };
+		1B4E259A2C620AC400D99DC5 /* EditProspectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E25992C620AC400D99DC5 /* EditProspectView.swift */; };
 		1B7F14852C5724FE00A8D3A8 /* HotProspectsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7F14842C5724FE00A8D3A8 /* HotProspectsApp.swift */; };
 		1B7F14872C5724FE00A8D3A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7F14862C5724FE00A8D3A8 /* ContentView.swift */; };
 		1B7F14892C5724FF00A8D3A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7F14882C5724FF00A8D3A8 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B4E25992C620AC400D99DC5 /* EditProspectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProspectView.swift; sourceTree = "<group>"; };
 		1B7F14812C5724FE00A8D3A8 /* HotProspects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotProspects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7F14842C5724FE00A8D3A8 /* HotProspectsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotProspectsApp.swift; sourceTree = "<group>"; };
 		1B7F14862C5724FE00A8D3A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				1B992B9A2C5B650B005ADFFB /* Prospect.swift */,
 				1B992B962C5B61C4005ADFFB /* MeView.swift */,
 				1B992B982C5B61D7005ADFFB /* ProspectsView.swift */,
+				1B4E25992C620AC400D99DC5 /* EditProspectView.swift */,
 				1B7F14882C5724FF00A8D3A8 /* Assets.xcassets */,
 				1B7F148A2C5724FF00A8D3A8 /* Preview Content */,
 			);
@@ -162,6 +165,7 @@
 				1B992B9B2C5B650B005ADFFB /* Prospect.swift in Sources */,
 				1B992B972C5B61C4005ADFFB /* MeView.swift in Sources */,
 				1B7F14872C5724FE00A8D3A8 /* ContentView.swift in Sources */,
+				1B4E259A2C620AC400D99DC5 /* EditProspectView.swift in Sources */,
 				1B7F14852C5724FE00A8D3A8 /* HotProspectsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
