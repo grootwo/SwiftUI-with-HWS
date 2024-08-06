@@ -32,11 +32,19 @@ struct ProspectsView: View {
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selectedProspects) { prospect in
-                VStack(alignment: .leading) {
-                    Text(prospect.name)
-                        .font(.headline)
-                    Text(prospect.emailAddress)
-                        .foregroundStyle(.secondary)
+                HStack{
+                    if filterType == .none {
+                        if prospect.isContacted == true {
+                            Image(systemName: "person.crop.circle.badge.checkmark")
+                        } else {
+                            Image(systemName: "person.crop.circle.badge.questionmark")
+                        }
+                    }
+                    VStack(alignment: .leading) {                        Text(prospect.name)
+                            .font(.headline)
+                        Text(prospect.emailAddress)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .swipeActions {
                     Button("Delete", systemImage: "trash", role: .destructive) {
@@ -109,16 +117,16 @@ struct ProspectsView: View {
     }
     func addNotification(for prospect: Prospect) {
         let notificationCenter = UNUserNotificationCenter.current()
-
+        
         let addRequest = {
             let content = UNMutableNotificationContent()
             content.title = "Reminder"
             content.body = "It's time for contact to \(prospect.name)"
             content.sound = .default
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//            var dateComponents = DateComponents()
-//            dateComponents.hour = 9
-//            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            //            var dateComponents = DateComponents()
+            //            dateComponents.hour = 9
+            //            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
             notificationCenter.add(request)
         }
