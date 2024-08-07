@@ -29,21 +29,24 @@ struct ProspectsView: View {
     @Query var prospects: [Prospect]
     @State private var isShowingScanner = false
     @State private var selectedProspects = Set<Prospect>()
+    @State private var isShowingEditProspectView = false
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selectedProspects) { prospect in
-                HStack {
-                    if filterType == .none {
-                        if prospect.isContacted == true {
-                            Image(systemName: "person.crop.circle.badge.checkmark")
-                        } else {
-                            Image(systemName: "person.crop.circle.badge.questionmark")
+                NavigationLink(destination: EditProspectView(prospect: prospect, name: prospect.name, emailAdress: prospect.emailAddress, isContacted: prospect.isContacted)) {
+                    HStack {
+                        if filterType == .none {
+                            if prospect.isContacted == true {
+                                Image(systemName: "person.crop.circle.badge.checkmark")
+                            } else {
+                                Image(systemName: "person.crop.circle.badge.questionmark")
+                            }
                         }
-                    }
-                    VStack(alignment: .leading) {                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundStyle(.secondary)
+                        VStack(alignment: .leading) {                        Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
                 .swipeActions {

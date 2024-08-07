@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EditProspectView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
+    var prospect: Prospect
     let states = ["contacted", "uncontacted"]
     @State var name: String
     @State var emailAdress: String
@@ -31,6 +33,7 @@ struct EditProspectView: View {
         .navigationTitle("New Prospect")
         .toolbar {
             Button("Save") {
+                modelContext.delete(prospect)
                 modelContext.insert(Prospect(name: name, emailAddress: emailAdress, isContacted: true))
                 dismiss()
             }
@@ -38,6 +41,6 @@ struct EditProspectView: View {
     }
 }
 
-#Preview {
-    EditProspectView(name: "unknown", emailAdress: "example", isContacted: true)
-}
+//#Preview {
+//    EditProspectView(prospect: Prospect, name: "unknown", emailAdress: "example", isContacted: true)
+//}
