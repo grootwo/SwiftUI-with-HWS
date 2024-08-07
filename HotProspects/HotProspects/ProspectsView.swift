@@ -30,6 +30,7 @@ struct ProspectsView: View {
     @State private var isShowingScanner = false
     @State private var selectedProspects = Set<Prospect>()
     @State private var isShowingEditProspectView = false
+    @State private var sortOrder = [SortDescriptor(\Prospect.name), SortDescriptor(\Prospect.emailAddress)]
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selectedProspects) { prospect in
@@ -81,6 +82,22 @@ struct ProspectsView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     EditButton()
                 }
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                        Picker("Sort", selection: $sortOrder) {
+                            Text("Sort by name")
+                                .tag([
+                                    SortDescriptor(\Prospect.name),
+                                    SortDescriptor(\Prospect.emailAddress)
+                                ])
+                            Text("Sort by email")
+                                .tag([
+                                    SortDescriptor(\Prospect.emailAddress),
+                                    SortDescriptor(\Prospect.name)
+                                ])
+                        }
+                    }
+                }
                 if selectedProspects.isEmpty == false {
                     ToolbarItem(placement: .bottomBar) {
                         Button("Delete Selected", action: deleteProspects)
@@ -91,14 +108,20 @@ struct ProspectsView: View {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
             }
         }
+        .onChange(of: sortOrder) {
+            print("sort order changed")
+        }
     }
     init(filterType: FilterType) {
+        print("init")
         self.filterType = filterType
         if filterType != .none {
             let isContatedOnly = filterType == .contacted
             _prospects = Query(filter: #Predicate<Prospect> {
                 $0.isContacted == isContatedOnly
-            }, sort: \Prospect.name)
+            }, sort: sortOrder)
+        } else {
+            _prospects = Query(sort: sortOrder)
         }
     }
     func handleScan(result: Result<ScanResult, ScanError>) {
