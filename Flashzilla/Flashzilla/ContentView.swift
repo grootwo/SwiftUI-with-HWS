@@ -13,20 +13,24 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 30) {
             Text("Text")
-                .font(.largeTitle)
-                .rotationEffect(currentValue + finalValue)
-                .gesture(
-                    RotateGesture()
-                        .onChanged { value in
-                            currentValue += value.rotation
-                        }
-                        .onEnded { value in
-                            finalValue += currentValue
-                            currentValue = Angle.zero
+                .onTapGesture {
+                    print("text 1")
+                }
+                Text("Text")
+                .highPriorityGesture(
+                    TapGesture()
+                        .onEnded {
+                            print("text 2")
                         }
                 )
         }
         .padding()
+        .simultaneousGesture(
+            TapGesture()
+                .onEnded {
+                    print("vstack")
+                }
+        )
     }
 }
 
