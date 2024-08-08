@@ -8,22 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var currentValue = Angle.zero
+    @State private var finalValue = Angle.zero
     var body: some View {
         VStack(spacing: 30) {
-            Text("Double Tap")
-                .onTapGesture(count: 2) {
-                    print("double tap")
-                }
-            Text("Long Press")
-                .onLongPressGesture {
-                    print("long pressed")
-                }
-            Text("Long Press at least 3 seconds")
-                .onLongPressGesture {
-                    print("long pressed for 3 sec")
-                } onPressingChanged: { inProgress in
-                    print("in progress: \(inProgress)")
-                }
+            Text("Text")
+                .font(.largeTitle)
+                .rotationEffect(currentValue + finalValue)
+                .gesture(
+                    RotateGesture()
+                        .onChanged { value in
+                            currentValue += value.rotation
+                        }
+                        .onEnded { value in
+                            finalValue += currentValue
+                            currentValue = Angle.zero
+                        }
+                )
         }
         .padding()
     }
