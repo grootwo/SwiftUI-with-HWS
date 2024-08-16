@@ -8,15 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.accessibilityReduceTransparency) var reduceTransparency
-
     var body: some View {
-        Text("Hello, World!")
-            .blur(radius: reduceTransparency ? 0 : 0.5)
-            .padding()
-            .background(reduceTransparency ? .black : .secondary)
-            .foregroundStyle(.white)
-            .clipShape(.capsule)
+        CardView(card: .example)
     }
 }
 
