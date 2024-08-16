@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
-    var card: Card
+    let card: Card
     @State private var isHidingAnswer = true
     var body: some View {
         ZStack {
