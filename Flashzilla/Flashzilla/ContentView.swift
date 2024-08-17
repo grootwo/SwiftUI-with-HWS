@@ -17,7 +17,7 @@ struct ContentView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var accessibilityDifferentiateWithoutColor
     @Environment(\.scenePhase) var scenePhase
     @State private var cards = Array<Card>(repeating: .example, count: 10)
-    @State private var timeRemaining = 100
+    @State private var timeRemaining = 10
     @State private var isActive = true
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
@@ -42,6 +42,15 @@ struct ContentView: View {
                         }
                         .stacked(at: index, in: cards.count)
                     }
+                }
+                .allowsHitTesting(timeRemaining > 0)
+                if cards.isEmpty {
+                    Button("Reset cards", action: resetCards)
+                        .font(.title)
+                        .padding()
+                        .foregroundStyle(.black)
+                        .background(.white.opacity(0.7))
+                        .clipShape(.capsule)
                 }
             }
             if accessibilityDifferentiateWithoutColor {
@@ -69,12 +78,10 @@ struct ContentView: View {
             guard isActive else { return }
             if timeRemaining > 0 {
                 timeRemaining -= 1
-            } else {
-                
             }
         }
         .onChange(of: scenePhase) {
-            if scenePhase == .active {
+            if scenePhase == .active && !cards.isEmpty {
                 isActive = true
             } else {
                 isActive = false
@@ -84,6 +91,14 @@ struct ContentView: View {
     
     func removeCard(at index: Int) {
         cards.remove(at: index)
+        if cards.isEmpty {
+            isActive = false
+        }
+    }
+    func resetCards() {
+        cards = Array<Card>(repeating: .example, count: 10)
+        isActive = true
+        timeRemaining = 10
     }
 }
 
