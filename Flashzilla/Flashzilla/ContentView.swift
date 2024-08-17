@@ -68,6 +68,8 @@ struct ContentView: View {
                                 .background(.black.opacity(0.7))
                                 .clipShape(.circle)
                         }
+                        .accessibilityLabel("Wrong")
+                        .accessibilityHint("Mark your answer as being incorrect.")
                         Spacer()
                         Button {
                             removeCard(at: cards.count - 1)
@@ -77,6 +79,8 @@ struct ContentView: View {
                                 .background(.black.opacity(0.7))
                                 .clipShape(.circle)
                         }
+                        .accessibilityLabel("Correct")
+                        .accessibilityHint("Mark your answer as being correct.")
                     }
                     .foregroundStyle(.white)
                     .font(.largeTitle)
