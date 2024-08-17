@@ -15,7 +15,11 @@ extension View {
 
 struct ContentView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var accessibilityDifferentiateWithoutColor
+    @Environment(\.scenePhase) var scenePhase
     @State private var cards = Array<Card>(repeating: .example, count: 10)
+    @State private var timeRemaining = 100
+    @State private var isActive = true
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack {
             Image(.background)
@@ -23,6 +27,12 @@ struct ContentView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             VStack {
+                Text("Time: \(timeRemaining)")
+                    .font(.title)
+                    .padding()
+                    .foregroundStyle(.white)
+                    .background(.black.opacity(0.7))
+                    .clipShape(.capsule)
                 ZStack {
                     ForEach(0..<cards.count, id: \.self) { index in
                         CardView(card: cards[index]) {
@@ -53,6 +63,21 @@ struct ContentView: View {
                     .padding()
                     .offset(y: -50)
                 }
+            }
+        }
+        .onReceive(timer) { time in
+            guard isActive else { return }
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            } else {
+                
+            }
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                isActive = true
+            } else {
+                isActive = false
             }
         }
     }
