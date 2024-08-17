@@ -69,6 +69,7 @@ struct CardView: View {
         .onTapGesture {
             isHidingAnswer.toggle()
         }
+        .animation(.snappy, value: offset)
     }
 }
 
