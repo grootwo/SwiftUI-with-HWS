@@ -59,6 +59,8 @@ struct EditCardsView: View {
         guard !trimmedPrompt.isEmpty && !trimmedAnswer.isEmpty else { return }
         cards.insert(Card(prompt: trimmedPrompt, answer: trimmedAnswer), at: 0)
         saveData()
+        newPrompt = ""
+        newAnswer = ""
     }
     func removeCards(at offsets: IndexSet) {
         cards.remove(atOffsets: offsets)
