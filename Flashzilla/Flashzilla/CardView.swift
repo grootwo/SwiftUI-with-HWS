@@ -13,7 +13,7 @@ struct CardView: View {
     let card: Card
     @State private var isHidingAnswer = true
     @State private var offset = CGSize.zero
-    var removal: (() -> Void)? = nil
+    var removal: ((Bool) -> Void)? = nil
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
@@ -59,8 +59,10 @@ struct CardView: View {
                     offset = gesture.translation
                 }
                 .onEnded { _ in
-                    if abs(offset.width) > 100 {
-                        removal?()
+                    if offset.width > 100 {
+                        removal?(true)
+                    } else if offset.width < -100 {
+                        removal?(false)
                     } else {
                         offset = .zero
                     }

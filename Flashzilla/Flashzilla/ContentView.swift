@@ -37,9 +37,9 @@ struct ContentView: View {
                     .clipShape(.capsule)
                 ZStack {
                     ForEach(0..<cards.count, id: \.self) { index in
-                        CardView(card: cards[index]) {
+                        CardView(card: cards[index]) { isCorrect in
                             withAnimation {
-                                removeCard(at: index)
+                                removeCard(at: index, isCorrect: isCorrect)
                             }
                         }
                         .stacked(at: index, in: cards.count)
@@ -79,7 +79,7 @@ struct ContentView: View {
                     Spacer()
                     HStack {
                         Button {
-                            removeCard(at: cards.count - 1)
+                            removeCard(at: cards.count - 1, isCorrect: false)
                         } label: {
                             Image(systemName: "xmark.circle")
                                 .padding()
@@ -90,7 +90,7 @@ struct ContentView: View {
                         .accessibilityHint("Mark your answer as being incorrect.")
                         Spacer()
                         Button {
-                            removeCard(at: cards.count - 1)
+                            removeCard(at: cards.count - 1, isCorrect: true)
                         } label: {
                             Image(systemName: "checkmark.circle")
                                 .padding()
@@ -124,12 +124,20 @@ struct ContentView: View {
         .onAppear(perform: loadData)
     }
     
-    func removeCard(at index: Int) {
+    func removeCard(at index: Int, isCorrect: Bool) {
         guard index >= 0 else { return }
+        let card = cards[index]
+        print("해당 카드: \(card.prompt)")
         cards.remove(at: index)
+        print("지우고 남은 카드들: \(cards)")
+        if !isCorrect {
+            cards.insert(card, at: 0)
+            print("다시 채운 카드들: \(cards)")
+        }
         if cards.isEmpty {
             isActive = false
         }
+        print("--------------")
     }
     func resetCards() {
         isActive = true
