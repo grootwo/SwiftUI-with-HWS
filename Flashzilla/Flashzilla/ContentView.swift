@@ -18,8 +18,9 @@ struct ContentView: View {
     @Environment(\.accessibilityVoiceOverEnabled) var accessibilityVoiceOverEnabled
     @Environment(\.scenePhase) var scenePhase
     @State private var cards = Array<Card>(repeating: .example, count: 10)
-    @State private var timeRemaining = 10
+    @State private var timeRemaining = 100
     @State private var isActive = true
+    @State private var isShowingEditView = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack {
@@ -55,6 +56,23 @@ struct ContentView: View {
                         .background(.white.opacity(0.7))
                         .clipShape(.capsule)
                 }
+            }
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        isShowingEditView = true
+                    } label: {
+                        Image(systemName: "checkmark.circle")
+                            .font(.title)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(.black.opacity(0.7))
+                            .clipShape(.circle)
+                    }
+                    .offset(y: 90)
+                }
+                Spacer()
             }
             if accessibilityDifferentiateWithoutColor || accessibilityVoiceOverEnabled {
                 VStack {
@@ -114,7 +132,7 @@ struct ContentView: View {
     func resetCards() {
         cards = Array<Card>(repeating: .example, count: 10)
         isActive = true
-        timeRemaining = 10
+        timeRemaining = 100
     }
 }
 
