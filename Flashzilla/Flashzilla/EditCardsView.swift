@@ -22,7 +22,7 @@ struct EditCardsView: View {
                 }
                 Section {
                     ForEach(0..<cards.count, id: \.self) { index in
-                        VStack {
+                        VStack(alignment: .leading) {
                             Text(cards[index].prompt)
                                 .font(.headline)
                             Text(cards[index].answer)
@@ -37,7 +37,7 @@ struct EditCardsView: View {
             .navigationTitle("Edit Cards")
             .onAppear(perform: loadData)
             .toolbar {
-                Button("Done", action: loadData)
+                Button("Done", action: done)
             }
         }
     }
