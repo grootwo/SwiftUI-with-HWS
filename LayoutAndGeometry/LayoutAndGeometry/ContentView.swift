@@ -9,21 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Text("Live long and prosper")
-                .frame(width: 300, height: 300, alignment: .bottomTrailing)
-                .background(.yellow)
-            HStack(alignment: .firstTextBaseline) {
-                Text("Living")
-                    .font(.caption)
-                Text("long")
-                Text("ang")
-                    .font(.title)
-                Text("prosper")
-                    .font(.largeTitle)
+        VStack(alignment: .leading) {
+            ForEach(0..<10) { position in
+                Text("Number \(position)")
+                    .alignmentGuide(.leading) { _ in Double(position) * -10 }
             }
-            .background(.green)
         }
+        .background(.red)
+        .frame(width: 400, height: 400)
+        .background(.blue)
     }
 }
 
