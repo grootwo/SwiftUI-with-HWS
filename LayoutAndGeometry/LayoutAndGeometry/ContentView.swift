@@ -9,8 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Image(.example)
-            .frame(width: 100, height: 100)
+        VStack {
+            Text("Live long and prosper")
+                .frame(width: 300, height: 300, alignment: .bottomTrailing)
+                .background(.yellow)
+            HStack(alignment: .firstTextBaseline) {
+                Text("Living")
+                    .font(.caption)
+                Text("long")
+                Text("ang")
+                    .font(.title)
+                Text("prosper")
+                    .font(.largeTitle)
+            }
+            .background(.green)
+        }
     }
 }
 
