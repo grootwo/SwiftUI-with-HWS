@@ -8,23 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-    let colors: [Color] = [.red, .green, .blue, .orange, .pink, .purple, .yellow]
-
     var body: some View {
-        GeometryReader { fullView in
-            ScrollView {
-                ForEach(0..<50) { index in
-                    GeometryReader { proxy in
-                        Text("Row #\(index)")
-                            .font(.title)
-                            .frame(maxWidth: .infinity)
-                            .background(colors[index % 7])
-                            .rotation3DEffect(.degrees(proxy.frame(in: .global).minY - fullView.size.height / 5) / 5, axis: (x: 0, y: 1, z: 0))
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 0) {
+                ForEach(1..<20) { num in
+                        Text("Number \(num)")
+                            .font(.largeTitle)
+                            .padding()
+                            .background(.red)
+                            .frame(width: 200, height: 200)
+                            .visualEffect { content, geometryProxy in
+                                content
+                                    .rotation3DEffect(.degrees(-geometryProxy.frame(in: .global).minX) / 5, axis: (x: 0, y: 1, z: 0))
+                            }
                     }
-                    .frame(height: 40)
-                }
+                    .frame(width: 200, height: 200)
             }
+            .scrollTargetLayout()
         }
+        .scrollTargetBehavior(.viewAligned)
     }
 }
 
