@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    let colors: [Color] = [.red, .green, .blue, .orange, .pink, .purple, .yellow]
+
     var body: some View {
-        HStack {
-            Text("IMPORTANT")
-                .frame(width: 200)
-                .background(.blue)
-            
-            GeometryReader { proxy in
-                Image(.example)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: proxy.size.width * 0.8, height: proxy.size.height)
+        GeometryReader { fullView in
+            ScrollView {
+                ForEach(0..<50) { index in
+                    GeometryReader { proxy in
+                        Text("Row #\(index)")
+                            .font(.title)
+                            .frame(maxWidth: .infinity)
+                            .background(colors[index % 7])
+                            .rotation3DEffect(.degrees(proxy.frame(in: .global).minY - fullView.size.height / 5) / 5, axis: (x: 0, y: 1, z: 0))
+                    }
+                    .frame(height: 40)
+                }
             }
         }
     }
