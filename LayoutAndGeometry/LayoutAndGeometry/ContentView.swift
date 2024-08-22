@@ -18,7 +18,7 @@ struct ContentView: View {
                         Text("Row #\(index)")
                             .font(.title)
                             .frame(maxWidth: .infinity)
-                            .background(colors[index % 7])
+                            .background(Color(hue: min(proxy.frame(in: .global).minY/800, 1.0), saturation: min(8.0 - proxy.frame(in: .global).maxY/100, 1.0), brightness: 1.0))
                             .rotation3DEffect(.degrees(proxy.frame(in: .global).minY - fullView.size.height / 2) / 5, axis: (x: 0, y: 1, z: 0))
                             .opacity(proxy.frame(in: .global).minY/200)
                             .scaleEffect(max(proxy
