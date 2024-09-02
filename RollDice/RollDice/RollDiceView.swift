@@ -10,8 +10,8 @@ import SwiftUI
 struct RollDiceView: View {
     @Binding var isShowingRollDiceView: Bool
     @Binding var newNumber: Int?
-    @State private var rollCount = 0
-    @State private var totalNumber = 0
+    @State private var rollCount = UserDefaults.standard.integer(forKey: "RollCount")
+    @State private var totalNumber = UserDefaults.standard.integer(forKey: "TotalNumber")
     var body: some View {
         VStack {
             Text("Total: \(totalNumber) / Roll Count: \(rollCount)")
@@ -33,7 +33,9 @@ struct RollDiceView: View {
     func rollDice() {
         newNumber = Int.random(in: 1...6)
         rollCount += 1
+        UserDefaults.standard.set(rollCount, forKey: "RollCount")
         totalNumber += newNumber!
+        UserDefaults.standard.set(totalNumber, forKey: "TotalNumber")
     }
 }
 
