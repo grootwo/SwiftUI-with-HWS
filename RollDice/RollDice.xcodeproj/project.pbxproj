@@ -12,6 +12,7 @@
 		1B6746A92C85AA5900EF4CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B6746A82C85AA5900EF4CC1 /* Assets.xcassets */; };
 		1B6746AC2C85AA5900EF4CC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B6746AB2C85AA5900EF4CC1 /* Preview Assets.xcassets */; };
 		1B96C7932C85AE3A004F400D /* RollDiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B96C7922C85AE3A004F400D /* RollDiceView.swift */; };
+		1B96C7952C85B16A004F400D /* SetDiceMaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B96C7942C85B16A004F400D /* SetDiceMaxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		1B6746A82C85AA5900EF4CC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B6746AB2C85AA5900EF4CC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B96C7922C85AE3A004F400D /* RollDiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollDiceView.swift; sourceTree = "<group>"; };
+		1B96C7942C85B16A004F400D /* SetDiceMaxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDiceMaxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				1B6746A42C85AA5800EF4CC1 /* RollDiceApp.swift */,
 				1B6746A62C85AA5800EF4CC1 /* ContentView.swift */,
 				1B96C7922C85AE3A004F400D /* RollDiceView.swift */,
+				1B96C7942C85B16A004F400D /* SetDiceMaxView.swift */,
 				1B6746A82C85AA5900EF4CC1 /* Assets.xcassets */,
 				1B6746AA2C85AA5900EF4CC1 /* Preview Content */,
 			);
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B96C7932C85AE3A004F400D /* RollDiceView.swift in Sources */,
+				1B96C7952C85B16A004F400D /* SetDiceMaxView.swift in Sources */,
 				1B6746A72C85AA5800EF4CC1 /* ContentView.swift in Sources */,
 				1B6746A52C85AA5800EF4CC1 /* RollDiceApp.swift in Sources */,
 			);

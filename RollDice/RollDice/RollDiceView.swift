@@ -15,7 +15,6 @@ struct RollDiceView: View {
         }, label: {
             Text(newNumber == nil ? "?" : String(newNumber!))
                 .font(.largeTitle)
-                .foregroundStyle(.black)
                 .padding(50)
                 .background(.white)
                 .clipShape(Circle())
