@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SetDiceMaxView: View {
-    @State private var maxNumber = 6
+    @Binding var isShowingRollDiceView: Bool
+    @Binding var maxNumber: Int
     @State private var isShowingErrorMessage = false
     var body: some View {
         VStack {
@@ -28,6 +29,7 @@ struct SetDiceMaxView: View {
                     isShowingErrorMessage = true
                 } else {
                     isShowingErrorMessage = false
+                    isShowingRollDiceView = true
                 }
             }, label: {
                 Text("Let's Roll")
@@ -39,5 +41,5 @@ struct SetDiceMaxView: View {
 }
 
 #Preview {
-    SetDiceMaxView()
+    SetDiceMaxView(isShowingRollDiceView: .constant(false), maxNumber: .constant(6))
 }

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RollDiceView: View {
-    @State private var newNumber: Int? = nil
+    @Binding var isShowingRollDiceView: Bool
+    @Binding var newNumber: Int?
     var body: some View {
         Button(action: {
             rollDice()
@@ -27,5 +28,5 @@ struct RollDiceView: View {
 }
 
 #Preview {
-    RollDiceView()
+    RollDiceView(isShowingRollDiceView: .constant(true), newNumber: .constant(6))
 }
