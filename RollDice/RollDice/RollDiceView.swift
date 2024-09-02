@@ -27,6 +27,7 @@ struct RollDiceView: View {
                     .clipShape(Circle())
                     .shadow(radius: 5)
             })
+            .sensoryFeedback(.impact, trigger: newNumber)
             Spacer()
         }
     }
