@@ -10,20 +10,30 @@ import SwiftUI
 struct RollDiceView: View {
     @Binding var isShowingRollDiceView: Bool
     @Binding var newNumber: Int?
+    @State private var rollCount = 0
+    @State private var totalNumber = 0
     var body: some View {
-        Button(action: {
-            rollDice()
-        }, label: {
-            Text(newNumber == nil ? "?" : String(newNumber!))
-                .font(.largeTitle)
-                .padding(50)
-                .background(.white)
-                .clipShape(Circle())
-                .shadow(radius: 5)
-        })
+        VStack {
+            Text("Total: \(totalNumber) / Roll Count: \(rollCount)")
+                .font(.title)
+            Spacer()
+            Button(action: {
+                rollDice()
+            }, label: {
+                Text(newNumber == nil ? "?" : String(newNumber!))
+                    .font(.largeTitle)
+                    .padding(50)
+                    .background(.white)
+                    .clipShape(Circle())
+                    .shadow(radius: 5)
+            })
+            Spacer()
+        }
     }
     func rollDice() {
         newNumber = Int.random(in: 1...6)
+        rollCount += 1
+        totalNumber += newNumber!
     }
 }
 
