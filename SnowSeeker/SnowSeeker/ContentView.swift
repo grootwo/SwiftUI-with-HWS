@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationSplitView {
+            NavigationLink("Tap to Next View") {
+                Text("Next View")
+            }
+        } detail: {
+            Text("Main View")
+                .toolbar(.hidden, for: .navigationBar)
         }
-        .padding()
+        .navigationSplitViewStyle(.balanced)
     }
 }
 
