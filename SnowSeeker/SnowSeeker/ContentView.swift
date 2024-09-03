@@ -7,20 +7,29 @@
 
 import SwiftUI
 
-struct User: Identifiable {
-    let id = "Unknown"
+struct TextView: View {
+    var body: some View {
+        Group {
+            Text("하나: One, Eins, Uno")
+            Text("둘: Two, Zwei, Dos")
+            Text("셋: Three, Drei, Tres")
+        }
+        .font(.title)
+    }
 }
 
 struct ContentView: View {
-    @State private var user: User? = nil
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var body: some View {
-        Button("Tap to create User") {
-            user = User()
+        if horizontalSizeClass == .compact {
+            VStack {
+                TextView()
+            }
+        } else {
+            HStack {
+                TextView()
+            }
         }
-        .sheet(item: $user, content: { user in
-            Text(user.id)
-                .presentationDetents([.medium, .large])
-        })
     }
 }
 
