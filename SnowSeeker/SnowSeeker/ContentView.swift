@@ -7,28 +7,23 @@
 
 import SwiftUI
 
-struct TextView: View {
-    var body: some View {
-        Group {
-            Text("하나: One, Eins, Uno")
-            Text("둘: Two, Zwei, Dos")
-            Text("셋: Three, Drei, Tres")
-        }
-        .font(.title)
-    }
-}
-
 struct ContentView: View {
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    var body: some View {
-        if horizontalSizeClass == .compact {
-            VStack {
-                TextView()
-            }
+    @State private var searchText = ""
+    let animals = ["cat", "dog", "elephant", "owl", "tiger", "koala"]
+    var filteredAnimals: [String] {
+        if searchText.isEmpty {
+            return animals
         } else {
-            HStack {
-                TextView()
+            return animals.filter { $0.localizedStandardContains(searchText) }
+        }
+    }
+    
+    var body: some View {
+        NavigationStack {
+            List(filteredAnimals, id: \.self) { animal in
+                Text(animal)
             }
+            .searchable(text: $searchText, prompt: "Look for something")
         }
     }
 }
