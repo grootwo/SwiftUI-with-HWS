@@ -7,17 +7,21 @@
 
 import SwiftUI
 
+struct User: Identifiable {
+    let id = "Unknown"
+}
+
 struct ContentView: View {
+    @State private var user: User? = nil
+    @State private var isShowingAlert = false
     var body: some View {
-        NavigationSplitView {
-            NavigationLink("Tap to Next View") {
-                Text("Next View")
-            }
-        } detail: {
-            Text("Main View")
-                .toolbar(.hidden, for: .navigationBar)
+        Button("Tap to create User") {
+            user = User()
+            isShowingAlert = true
         }
-        .navigationSplitViewStyle(.balanced)
+        .alert("Hallo", isPresented: $isShowingAlert, presenting: user) { user in
+            Text(user.id)
+        }
     }
 }
 
