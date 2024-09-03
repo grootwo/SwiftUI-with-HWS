@@ -13,15 +13,14 @@ struct User: Identifiable {
 
 struct ContentView: View {
     @State private var user: User? = nil
-    @State private var isShowingAlert = false
     var body: some View {
         Button("Tap to create User") {
             user = User()
-            isShowingAlert = true
         }
-        .alert("Hallo", isPresented: $isShowingAlert, presenting: user) { user in
+        .sheet(item: $user, content: { user in
             Text(user.id)
-        }
+                .presentationDetents([.medium, .large])
+        })
     }
 }
 
