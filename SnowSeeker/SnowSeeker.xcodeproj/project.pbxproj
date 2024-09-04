@@ -11,6 +11,7 @@
 		1B48D16C2C86E101000F0651 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48D16B2C86E101000F0651 /* ContentView.swift */; };
 		1B48D16E2C86E102000F0651 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B48D16D2C86E102000F0651 /* Assets.xcassets */; };
 		1B48D1712C86E102000F0651 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B48D1702C86E102000F0651 /* Preview Assets.xcassets */; };
+		1BAE2F8A2C881DC400619D5B /* resorts.json in Resources */ = {isa = PBXBuildFile; fileRef = 1BAE2F892C881DC400619D5B /* resorts.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		1B48D16B2C86E101000F0651 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B48D16D2C86E102000F0651 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B48D1702C86E102000F0651 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1BAE2F892C881DC400619D5B /* resorts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = resorts.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				1B48D1692C86E101000F0651 /* SnowSeekerApp.swift */,
 				1B48D16B2C86E101000F0651 /* ContentView.swift */,
+				1BAE2F892C881DC400619D5B /* resorts.json */,
 				1B48D16D2C86E102000F0651 /* Assets.xcassets */,
 				1B48D16F2C86E102000F0651 /* Preview Content */,
 			);
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BAE2F8A2C881DC400619D5B /* resorts.json in Resources */,
 				1B48D1712C86E102000F0651 /* Preview Assets.xcassets in Resources */,
 				1B48D16E2C86E102000F0651 /* Assets.xcassets in Resources */,
 			);
