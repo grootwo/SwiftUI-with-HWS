@@ -16,7 +16,7 @@ struct ResortView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Image(resort.id)
+                Image(decorative: resort.id)
                     .resizable()
                     .scaledToFit()
                 HStack {
@@ -50,17 +50,15 @@ struct ResortView: View {
                             }
                         }
                     }
-                    .padding(.vertical)
                 }
                 .padding()
             }
-            .navigationTitle("\(resort.name), \(resort.country)")
-            .navigationBarTitleDisplayMode(.inline)
-            .alert(selectedFacility?.name ?? "More information", isPresented: $isShowingMessage, presenting: selectedFacility) { _ in
-            } message: { facility in
-                Text(facility.message)
-            }
-            
+        }
+        .navigationTitle("\(resort.name), \(resort.country)")
+        .navigationBarTitleDisplayMode(.inline)
+        .alert(selectedFacility?.name ?? "More information", isPresented: $isShowingMessage, presenting: selectedFacility) { _ in
+        } message: { facility in
+            Text(facility.message)
         }
     }
 }

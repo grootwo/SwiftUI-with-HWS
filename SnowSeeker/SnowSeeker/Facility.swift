@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Facility {
+struct Facility: Identifiable {
     let id = UUID()
     var name: String
     private let icons = [
@@ -27,14 +27,16 @@ struct Facility {
     ]
     var icon: some View {
         if let iconName = icons[name] {
-            Image(systemName: iconName)
+            return Image(systemName: iconName)
+                .accessibilityLabel(name)
+                .foregroundColor(.secondary)
         } else {
             fatalError("Unknown facility type: \(name)")
         }
     }
     var message: String {
         if let message = descriptions[name] {
-            message
+            return message
         } else {
             fatalError("Unknown facility type: \(name)")
         }
