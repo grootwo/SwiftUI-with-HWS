@@ -10,6 +10,7 @@ import SwiftUI
 struct ResortView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @Environment(Favorites.self) var favorites
     let resort: Resort
     @State private var selectedFacility: Facility?
     @State private var isShowingMessage = false
@@ -60,9 +61,19 @@ struct ResortView: View {
         } message: { facility in
             Text(facility.message)
         }
+        .toolbar {
+            Button("Favorite", systemImage: favorites.contains(resort) ? "heart.fill" : "heart") {
+                if favorites.contains(resort) {
+                    favorites.remove(resort)
+                } else {
+                    favorites.add(resort)
+                }
+            }
+        }
     }
 }
 
 #Preview {
     ResortView(resort: .example)
+        .environment(Favorites())
 }

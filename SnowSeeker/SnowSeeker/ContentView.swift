@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var favorites = Favorites()
     @State private var searchText = ""
     let resorts: [Resort] = Bundle.main.decode(file: "resorts.json")
     var filteredResorts: [Resort] {
@@ -36,6 +37,11 @@ struct ContentView: View {
                             Text("\(resort.runs) runs")
                                 .foregroundStyle(.secondary)
                         }
+                        if favorites.contains(resort) {
+                            Spacer()
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
             }
@@ -47,6 +53,7 @@ struct ContentView: View {
         } detail: {
             WelcomeView()
         }
+        .environment(favorites)
     }
 }
 
