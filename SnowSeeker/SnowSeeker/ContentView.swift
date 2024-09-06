@@ -7,10 +7,14 @@
 
 import SwiftUI
 
+enum SortOrder {
+    case basic, resortName, countryName
+}
+
 struct ContentView: View {
-    @State private var favorites = Favorites()
     @State private var searchText = ""
-    let resorts: [Resort] = Bundle.main.decode(file: "resorts.json")
+    @State private var sortOrder = SortOrder.basic
+    var resorts: [Resort] = Bundle.main.decode(file: "resorts.json")
     var filteredResorts: [Resort] {
         if searchText.isEmpty {
             return resorts
@@ -49,11 +53,22 @@ struct ContentView: View {
             .navigationDestination(for: Resort.self) { resort in
                 ResortView(resort: resort)
             }
+            .toolbar {
+                Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                    Picker("Sort", selection: $sortOrder) {
+                        Text("Default")
+                            .tag(SortOrder.basic)
+                        Text("Sort by resort name")
+                            .tag(SortOrder.resortName)
+                        Text("Sort by country name")
+                            .tag(SortOrder.countryName)
+                    }
+                }
+            }
             .searchable(text: $searchText, prompt: "Search for a resort")
         } detail: {
             WelcomeView()
         }
-        .environment(favorites)
     }
 }
 
