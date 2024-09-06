@@ -20,6 +20,21 @@ struct ResortView: View {
                 Image(decorative: resort.id)
                     .resizable()
                     .scaledToFit()
+                    .overlay(
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                Text(resort.imageCredit)
+                                    .font(.caption)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(.black.opacity(0.5))
+                                    .clipShape(.capsule)
+                            }
+                        }
+                            .padding()
+                    )
                 HStack {
                     if horizontalSizeClass == .compact && dynamicTypeSize > .large {
                         VStack(spacing: 10) {
