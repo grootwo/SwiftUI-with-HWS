@@ -12,16 +12,18 @@ enum SortOrder {
 }
 
 struct ContentView: View {
+    @State private var favorites = Favorites()
     @State private var searchText = ""
     @State private var sortOrder = SortOrder.basic
     var resorts: [Resort] = Bundle.main.decode(file: "resorts.json")
-    var filteredResorts: [Resort] {
-        if searchText.isEmpty {
-            return resorts
-        } else {
-            return resorts.filter { $0.name.localizedStandardContains(searchText) }
-        }
-    }
+    @State private var filteredResorts = [Resort]()
+//    var filteredResorts: [Resort] {
+//        if searchText.isEmpty {
+//            return resorts
+//        } else {
+//            return resorts.filter { $0.name.localizedStandardContains(searchText) }
+//        }
+//    }
     var body: some View {
         NavigationSplitView {
             List(filteredResorts) { resort in
@@ -66,6 +68,22 @@ struct ContentView: View {
                 }
             }
             .searchable(text: $searchText, prompt: "Search for a resort")
+            .onChange(of: searchText) {
+                    if searchText.isEmpty {
+                        filteredResorts = resorts
+                    } else {
+                        filteredResorts = resorts.filter { $0.name.localizedStandardContains(searchText) }
+                    }
+            }
+            .onChange(of: sortOrder) {
+                if sortOrder == .resortName {
+                    filteredResorts.sorted { $0.name < $1.name }
+                    print("name")
+                } else if sortOrder == .countryName {
+                    filteredResorts.sorted { $0.country < $1.country }
+                    print("country")
+                }
+            }
         } detail: {
             WelcomeView()
         }
